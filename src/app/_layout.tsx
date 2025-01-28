@@ -16,8 +16,10 @@ export default function Layout() {
 		<Stack
 			screenOptions={{
 				headerShown: false,
-				contentStyle: { backgroundColor: colors.gray[600] },
 			}}
-		/>
+		>
+			<Stack.Screen name='index' />
+			<Stack.Screen name='signup' />
+		</Stack>
 	)
 }
