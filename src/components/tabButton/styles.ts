@@ -8,12 +8,12 @@ export const s = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: colors.main.light,
 		gap: 10,
-		padding: 10,
+		padding: '3%',
 		borderRadius: 5,
 	},
 	text: {
 		fontFamily: fontFamily.bold,
-		fontSize: 16,
+		fontSize: 12,
 		color: colors.gray[100],
 	},
 	icon: {

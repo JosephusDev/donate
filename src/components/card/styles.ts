@@ -3,22 +3,22 @@ import { colors, fontFamily } from '@/styles/theme'
 
 export const s = StyleSheet.create({
 	card: {
-		padding: 20,
+		padding: '8%',
 	},
 	title: {
 		fontFamily: fontFamily.bold,
-		fontSize: 25,
+		fontSize: 20,
 		alignItems: 'center',
 		color: colors.main.base,
 		textAlign: 'center',
 		justifyContent: 'center',
-		marginBottom: 10,
+		marginBottom: '5%',
 	},
 	descrition: {
 		fontFamily: fontFamily.regular,
-		fontSize: 16,
+		fontSize: 12,
 		color: colors.gray[500],
-		marginBottom: 25,
+		marginBottom: '8%',
 		textAlign: 'center',
 	},
 })
