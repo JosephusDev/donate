@@ -3,18 +3,18 @@ import { colors, fontFamily } from '@/styles/theme'
 
 export const s = StyleSheet.create({
 	label: {
-		fontSize: 16,
-		marginBottom: 8,
+		fontSize: 12,
+		marginBottom: '2%',
 		fontFamily: fontFamily.medium,
 	},
 	input: {
 		borderWidth: 1,
 		borderColor: colors.gray[300],
 		borderRadius: 5,
-		padding: 10,
-		marginBottom: 16,
+		padding: '4%',
+		marginBottom: '3%',
 		color: colors.gray[600],
 		fontFamily: fontFamily.regular,
-		fontSize: 16,
+		fontSize: 12,
 	},
 })

@@ -1,11 +1,10 @@
 import { Link } from 'expo-router'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { s } from './styles'
 import Card from '@/components/card'
 import { useState } from 'react'
 import TabsHeader from '@/components/tabsHeader'
 import { Button } from '@/components/tabButton'
-import Input from '@/components/input'
 import IndividualForm from '@/components/individualForm'
 import HospitalForm from '@/components/hospitalForm'
 

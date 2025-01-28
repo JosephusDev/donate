@@ -19,7 +19,7 @@ export const Button = ({ icon, width = 'auto', children, isFocused, ...props }: 
 			{...props}
 			style={[s.tabButton, { backgroundColor: isFocused ? colors.main.dark : colors.gray[100] }, { width: width }]}
 		>
-			<Feather name={icon} size={18} style={[s.icon, { color: isFocused ? colors.gray[100] : colors.gray[600] }]} />
+			<Feather name={icon} size={12} style={[s.icon, { color: isFocused ? colors.gray[100] : colors.gray[600] }]} />
 			<Text style={[s.text, { color: isFocused ? colors.gray[100] : colors.gray[600] }]}>{children}</Text>
 		</Pressable>
 	)
