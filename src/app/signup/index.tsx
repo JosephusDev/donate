@@ -4,7 +4,7 @@ import { s } from './styles'
 import Card from '@/components/card'
 import { useState } from 'react'
 import TabsHeader from '@/components/tabsHeader'
-import { Button } from '@/components/tabButton'
+import { Button } from '@/components/button'
 import IndividualForm from '@/components/individualForm'
 import HospitalForm from '@/components/hospitalForm'
 

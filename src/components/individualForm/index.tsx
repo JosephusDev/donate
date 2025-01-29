@@ -3,7 +3,7 @@ import { View, Text, TextInput } from 'react-native'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { GenderEnum, UserType, UserTypeEnum } from '@/types'
-import { Button } from '../tabButton'
+import { Button } from '../button'
 
 export default function IndividualForm() {
 	const { control, handleSubmit } = useForm<UserType>()
@@ -76,7 +76,7 @@ export default function IndividualForm() {
 				rules={{ required: true }}
 				render={({ field: { onChange, onBlur, value } }) => (
 					<TextInput
-						style={[s.input, { marginBottom: 35 }]}
+						style={[s.input, { marginBottom: 20 }]}
 						onBlur={onBlur}
 						onChangeText={onChange}
 						value={value}

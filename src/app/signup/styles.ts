@@ -5,7 +5,7 @@ export const s = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: colors.gray[100],
-		padding: '5%',
+		padding: '2%',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -23,7 +23,7 @@ export const s = StyleSheet.create({
 	links: {
 		textAlign: 'center',
 		fontSize: 12,
-		margin: '5%',
+		margin: '2%',
 		color: colors.main.base,
 		fontFamily: fontFamily.bold,
 	},
