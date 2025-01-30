@@ -24,7 +24,6 @@ export const s = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 12,
 		margin: '2%',
-		color: colors.main.base,
 		fontFamily: fontFamily.bold,
 	},
 })

@@ -9,7 +9,6 @@ export const s = StyleSheet.create({
 		fontFamily: fontFamily.bold,
 		fontSize: 20,
 		alignItems: 'center',
-		color: colors.main.base,
 		textAlign: 'center',
 		justifyContent: 'center',
 		marginBottom: '5%',

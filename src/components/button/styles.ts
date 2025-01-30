@@ -13,7 +13,7 @@ export const s = StyleSheet.create({
 	},
 	text: {
 		fontFamily: fontFamily.bold,
-		fontSize: 12,
+		fontSize: 14,
 		color: colors.gray[100],
 	},
 	icon: {
