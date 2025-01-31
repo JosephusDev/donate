@@ -1,15 +1,15 @@
 {
 	"expo": {
-		"name": "Donate",
+		"name": "Doe",
 		"slug": "donate",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "./assets/images/doe-icon.png",
+		"icon": "./assets/images/icon.png",
 		"scheme": "myapp",
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
 		"splash": {
-			"image": "./assets/images/doe-splash.png",
+			"image": "./assets/images/splash-icon.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},
@@ -18,7 +18,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/doe-icon.png",
+				"foregroundImage": "./assets/images/icon.png",
 				"backgroundColor": "#ffffff"
 			}
 		},

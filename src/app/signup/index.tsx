@@ -1,5 +1,5 @@
 import { Link } from 'expo-router'
-import { View } from 'react-native'
+import { StatusBar, View } from 'react-native'
 import { s } from './styles'
 import Card from '@/components/card'
 import { useState } from 'react'
@@ -12,6 +12,7 @@ export default function SignUp() {
 	const [selectedTab, setSelectedTab] = useState('individual')
 	return (
 		<View style={s.container}>
+			<StatusBar backgroundColor='#FFFFFF' barStyle='dark-content' />
 			<TabsHeader
 				tabButtons={
 					<View style={s.tabButtons}>
