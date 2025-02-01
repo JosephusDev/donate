@@ -1,5 +1,6 @@
-import { Stack } from 'expo-router'
+import Navigator from '@/components/navigator'
 import { useFonts, Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold } from '@expo-google-fonts/rubik'
+import { StatusBar, View } from 'react-native'
 
 export default function Layout() {
 	const [fontsLoaded] = useFonts({
@@ -12,13 +13,9 @@ export default function Layout() {
 	if (!fontsLoaded) return null
 
 	return (
-		<Stack
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
-			<Stack.Screen name='index' />
-			<Stack.Screen name='signup' />
-		</Stack>
+		<View style={{flex: 1}}>
+			<StatusBar barStyle='dark-content' backgroundColor='white'/>
+			<Navigator/>
+		</View>
 	)
 }

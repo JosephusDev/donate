@@ -3,7 +3,6 @@ import { colors, fontFamily } from '@/styles/theme'
 
 export const s = StyleSheet.create({
 	button: {
-		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'center',
 		backgroundColor: colors.main.light,
