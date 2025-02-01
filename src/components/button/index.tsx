@@ -1,6 +1,6 @@
 import Feather from '@expo/vector-icons/Feather'
 import { TabTriggerSlotProps } from 'expo-router/ui'
-import { ComponentProps, Ref, forwardRef } from 'react'
+import { ComponentProps, Ref } from 'react'
 import { Text, Pressable, View, DimensionValue } from 'react-native'
 import { s } from './styles'
 import { colors } from '@/styles/colors'

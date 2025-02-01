@@ -124,17 +124,19 @@ export default function HospitalForm() {
 				)}
 			/>
 			{errors.password && (
-				<Text style={s.error}>
+				<Text style={[s.error, {marginTop: -17}]}>
 					Campo obrigatório <Feather name={'info'} size={12} />
 				</Text>
 			)}
-			<Button
-				icon='user-plus'
-				children={'Cadastrar'}
-				onPress={handleSubmit(onSubmit)}
-				width={'100%'}
-				isFocused={true}
-			/>
+			<View style={{marginTop: 15}}>
+				<Button
+					icon='user-plus'
+					children={'Cadastrar'}
+					onPress={handleSubmit(onSubmit)}
+					width={'100%'}
+					isFocused={true}
+				/>
+			</View>
 		</View>
 	)
 }
