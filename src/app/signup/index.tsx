@@ -25,7 +25,6 @@ export default function SignUp() {
 
 	return (
 		<View style={s.container}>
-			<Toast />
 			<TabsHeader
 				tabButtons={
 					<View style={s.tabButtons}>
