@@ -1,6 +1,7 @@
 export enum GenderEnum {
 	female = 'femenino',
 	male = 'masculino',
+	other = 'outro',
 }
 
 export enum UserTypeEnum {
@@ -18,6 +19,6 @@ export type UserType = {
 	address: string
 	phone: string
 	description?: string
-	blood_type_id: string
+	blood_type_id: number
 	gender: GenderEnum
 }

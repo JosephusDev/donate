@@ -17,4 +17,12 @@ export const s = StyleSheet.create({
 		fontFamily: fontFamily.regular,
 		fontSize: 12,
 	},
+	error: {
+		color: colors.main.light,
+		fontSize: 12,
+		fontFamily: fontFamily.regular,
+		marginBottom: '1%',
+		textAlign: 'right',
+		marginTop: '-2%',
+	},
 })

@@ -1,21 +1,45 @@
 import React from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, Alert } from 'react-native'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { GenderEnum, UserType, UserTypeEnum } from '@/types'
 import { Button } from '../button'
+import { create } from '@/services/api'
+import Feather from '@expo/vector-icons/Feather'
+import Toast from 'react-native-toast-message'
 
 export default function IndividualForm() {
-	const { control, handleSubmit } = useForm<UserType>()
-	const onSubmit: SubmitHandler<UserType> = data => {
+	const {
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<UserType>()
+	const onSubmit: SubmitHandler<UserType> = async data => {
 		data.user_type = UserTypeEnum.individual
 		data.state = false
 		data.description = ''
 		data.phone = ''
 		data.address = ''
 		data.gender = GenderEnum.male
-		data.blood_type_id = '1'
-		console.log(data)
+		data.blood_type_id = 1
+		const response = await create(data)
+		if (response.error) {
+			Toast.show({
+				type: 'error',
+				position: 'bottom',
+				text1: 'Erro',
+				text2: response.error.message,
+				visibilityTime: 3000,
+			})
+		} else {
+			Toast.show({
+				type: 'success',
+				position: 'bottom',
+				text1: 'Sucesso',
+				text2: 'Cadastro realizado com sucesso',
+				visibilityTime: 3000,
+			})
+		}
 	}
 
 	return (
@@ -35,6 +59,11 @@ export default function IndividualForm() {
 					/>
 				)}
 			/>
+			{errors.fullname && (
+				<Text style={s.error}>
+					Campo obrigatório <Feather name={'info'} size={12} />
+				</Text>
+			)}
 
 			<Text style={s.label}>Nome de usuario</Text>
 			<Controller
@@ -51,6 +80,11 @@ export default function IndividualForm() {
 					/>
 				)}
 			/>
+			{errors.username && (
+				<Text style={s.error}>
+					Campo obrigatório <Feather name={'info'} size={12} />
+				</Text>
+			)}
 
 			<Text style={s.label}>E-mail</Text>
 			<Controller
@@ -68,6 +102,11 @@ export default function IndividualForm() {
 					/>
 				)}
 			/>
+			{errors.email && (
+				<Text style={s.error}>
+					Campo obrigatório <Feather name={'info'} size={12} />
+				</Text>
+			)}
 
 			<Text style={s.label}>Palavra-passe</Text>
 			<Controller
@@ -85,6 +124,12 @@ export default function IndividualForm() {
 					/>
 				)}
 			/>
+			{errors.password && (
+				<Text style={s.error}>
+					Campo obrigatório <Feather name={'info'} size={12} />
+				</Text>
+			)}
+
 			<Button
 				icon='user-plus'
 				children={'Cadastrar'}
