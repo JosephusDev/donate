@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react'
 import TabsHeader from '@/components/tabsHeader'
 import { Button } from '@/components/button'
 import { IndividualForm, HospitalForm } from '@/components/forms'
-import Toast from 'react-native-toast-message'
 
 export default function SignUp() {
 	const [selectedTab, setSelectedTab] = useState('individual')
@@ -15,7 +14,7 @@ export default function SignUp() {
 	const panResponder = PanResponder.create({})
 
 	useEffect(() => {
-		selectedTab === 'individual' ? pan.setValue({ x: 600, y: 0 }) : pan.setValue({ x: -600, y: 0 })
+		selectedTab === 'individual' ? pan.setValue({ x: -600, y: 0 }) : pan.setValue({ x: 600, y: 0 })
 		Animated.spring(pan, {
 			toValue: { x: 0, y: 0 },
 			useNativeDriver: false,
@@ -24,7 +23,6 @@ export default function SignUp() {
 
 	return (
 		<View style={s.container}>
-			<Toast />
 			<TabsHeader
 				tabButtons={
 					<View style={s.tabButtons}>
