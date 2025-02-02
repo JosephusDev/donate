@@ -7,6 +7,7 @@ import { Button } from '../button'
 import Feather from '@expo/vector-icons/Feather'
 import Toast from 'react-native-toast-message'
 import { create } from '@/models/user'
+import { showToast } from '../customToast'
 
 export default function IndividualForm() {
 	const {
@@ -17,30 +18,22 @@ export default function IndividualForm() {
 	const onSubmit: SubmitHandler<UserType> = async data => {
 		data.user_type = UserTypeEnum.individual
 		data.state = false
-		data.description = ''
-		data.phone = ''
-		data.address = ''
+		data.description = null
+		data.phone = null
+		data.address = null
 		data.gender = GenderEnum.male
 		data.blood_type_id = null
-		const response = await create(data)
-		console.log(response)
-		if (response) {
-			Toast.show({
-				type: 'error',
-				position: 'bottom',
-				text1: 'Erro',
-				text2: response,
-				visibilityTime: 3000,
+		console.log(data)
+		await create(data)
+			.then(() => {
+				showToast({ type: 'success', title: 'Sucesso', message: 'Cadastro realizado com sucesso!' })
 			})
-		} else {
-			Toast.show({
-				type: 'success',
-				position: 'bottom',
-				text1: 'Sucesso',
-				text2: 'Cadastro realizado com sucesso',
-				visibilityTime: 3000,
+			.catch(error => {
+				// Se for um erro de validação, pega a mensagem específica
+				const errorMessage = error?.error?.message || 'Erro ao realizar o cadastro'
+
+				showToast({ type: 'error', title: 'Erro', message: errorMessage })
 			})
-		}
 	}
 
 	return (
