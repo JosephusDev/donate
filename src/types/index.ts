@@ -19,6 +19,6 @@ export type UserType = {
 	address: string
 	phone: string
 	description?: string
-	blood_type_id: number
+	blood_type_id: number | null
 	gender: GenderEnum
 }

@@ -5,7 +5,8 @@ import Card from '@/components/card'
 import { useEffect, useRef, useState } from 'react'
 import TabsHeader from '@/components/tabsHeader'
 import { Button } from '@/components/button'
-import {IndividualForm, HospitalForm} from '@/components/forms'
+import { IndividualForm, HospitalForm } from '@/components/forms'
+import Toast from 'react-native-toast-message'
 
 export default function SignUp() {
 	const [selectedTab, setSelectedTab] = useState('individual')
@@ -23,6 +24,7 @@ export default function SignUp() {
 
 	return (
 		<View style={s.container}>
+			<Toast />
 			<TabsHeader
 				tabButtons={
 					<View style={s.tabButtons}>
