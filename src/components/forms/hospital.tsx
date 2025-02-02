@@ -4,9 +4,9 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { GenderEnum, UserType, UserTypeEnum } from '@/types'
 import { Button } from '../button'
-import { create } from '@/services/api'
 import Feather from '@expo/vector-icons/Feather'
 import Toast from 'react-native-toast-message'
+import { create } from '@/models/user'
 
 export default function HospitalForm() {
 	const {
@@ -18,17 +18,17 @@ export default function HospitalForm() {
 		data.user_type = UserTypeEnum.hospital
 		data.state = false
 		data.description = ''
-		data.phone = '94766'
+		data.phone = ''
 		data.address = ''
 		data.gender = GenderEnum.other
-		data.blood_type_id = 1
+		data.blood_type_id = null
 		const response = await create(data)
-		if (response.error) {
+		if (response) {
 			Toast.show({
 				type: 'error',
 				position: 'bottom',
 				text1: 'Erro',
-				text2: response.error.message,
+				text2: response,
 				visibilityTime: 3000,
 			})
 		} else {
@@ -124,11 +124,11 @@ export default function HospitalForm() {
 				)}
 			/>
 			{errors.password && (
-				<Text style={[s.error, {marginTop: -17}]}>
+				<Text style={[s.error, { marginTop: -17 }]}>
 					Campo obrigatório <Feather name={'info'} size={12} />
 				</Text>
 			)}
-			<View style={{marginTop: 15}}>
+			<View style={{ marginTop: 15 }}>
 				<Button
 					icon='user-plus'
 					children={'Cadastrar'}
