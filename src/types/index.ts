@@ -16,9 +16,9 @@ export type UserType = {
 	fullname: string
 	state?: boolean
 	user_type: UserTypeEnum
-	address: string
-	phone: string
-	description?: string
+	address: string | null
+	phone: string | null
+	description: string | null
 	blood_type_id: number | null
 	gender: GenderEnum
 }

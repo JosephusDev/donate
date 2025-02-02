@@ -3,15 +3,13 @@ import { UserType } from '@/types'
 
 export const create = async (data: UserType) => {
 	try {
-		await api
-			.post('/user', data)
-			.then(Response => {
-				return JSON.stringify(Response)
-			})
-			.catch(Error => {
-				return JSON.stringify({ error: Error })
-			})
-	} catch (error) {
-		return JSON.stringify({ error: error })
+		const response = await api.post('/user', data)
+		return response.data
+	} catch (error: any) {
+		if (error.response && error.response.data) {
+			throw error.response.data
+		} else {
+			throw new Error('Erro inesperado, tente novamente.')
+		}
 	}
 }
