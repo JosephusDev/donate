@@ -17,10 +17,7 @@ export default function Layout() {
 		<View style={{ flex: 1 }}>
 			<StatusBar barStyle='dark-content' backgroundColor='white' />
 			<Navigator />
-<<<<<<< Updated upstream
 			<Toast />
-=======
->>>>>>> Stashed changes
 		</View>
 	)
 }
