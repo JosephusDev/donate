@@ -3,25 +3,38 @@ import { View, Text, TextInput } from 'react-native'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { Button } from '../button'
-
-interface LoginFormType {
-	email: string
-	password: string
-}
+import { UserType } from '@/types'
+import { login } from '@/models/user'
+import { showToast } from '../customToast'
+import Feather from '@expo/vector-icons/Feather'
 
 export default function LoginForm() {
-	const { control, handleSubmit } = useForm<LoginFormType>()
-
-	const onSubmit: SubmitHandler<LoginFormType> = data => {
+	const {
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<UserType>()
+	const onSubmit: SubmitHandler<UserType> = async data => {
 		console.log(data)
+		await login(data)
+			.then(response => {
+				console.log(response)
+				showToast({ type: 'success', title: 'Sucesso', message: 'Login realizado com sucesso!' })
+			})
+			.catch(error => {
+				// Se for um erro de validação, pega a mensagem específica
+				const errorMessage = error?.error?.message || 'Erro ao realizar o Login'
+
+				showToast({ type: 'error', title: 'Erro', message: errorMessage })
+			})
 	}
 
 	return (
 		<View>
-			<Text style={s.label}>E-mail</Text>
+			<Text style={s.label}>Nome de usuário</Text>
 			<Controller
 				control={control}
-				name='email'
+				name='username'
 				rules={{ required: true }}
 				render={({ field: { onChange, onBlur, value } }) => (
 					<TextInput
@@ -29,11 +42,15 @@ export default function LoginForm() {
 						onBlur={onBlur}
 						onChangeText={onChange}
 						value={value}
-						placeholder='exemplo@exemplo.com'
-						keyboardType='email-address'
+						placeholder='Nome de usuário'
 					/>
 				)}
 			/>
+			{errors.username && (
+				<Text style={s.error}>
+					Campo obrigatório <Feather name={'info'} size={12} />
+				</Text>
+			)}
 
 			<Text style={s.label}>Palavra-passe</Text>
 			<Controller
@@ -51,8 +68,15 @@ export default function LoginForm() {
 					/>
 				)}
 			/>
+			{errors.password && (
+				<Text style={[s.error, { marginTop: -17 }]}>
+					Campo obrigatório <Feather name={'info'} size={12} />
+				</Text>
+			)}
 
-			<Button icon='log-in' children={'Entrar'} onPress={handleSubmit(onSubmit)} width={'100%'} isFocused={true} />
+			<View style={{ marginTop: 15 }}>
+				<Button icon='log-in' children={'Entrar'} onPress={handleSubmit(onSubmit)} width={'100%'} isFocused={true} />
+			</View>
 		</View>
 	)
 }
