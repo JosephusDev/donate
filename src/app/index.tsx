@@ -6,6 +6,7 @@ export default function Index() {
 		<View>
 			<Text>Login</Text>
 			<Link href={'/signup'}>Criar Conta</Link>
+			<Link href={'/login'}>Login</Link>
 		</View>
 	)
 }
