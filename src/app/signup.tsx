@@ -63,7 +63,7 @@ export default function SignUp() {
 								</Animated.View>
 							</View>
 						)}
-						<Link href={'/login'} style={s.links}>
+						<Link href={'/'} style={s.links}>
 							Já tem uma conta? Faça login
 						</Link>
 					</View>
