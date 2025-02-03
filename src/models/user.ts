@@ -13,3 +13,16 @@ export const create = async (data: UserType) => {
 		}
 	}
 }
+
+export const login = async (data: Pick<UserType, 'username' | 'password'>) => {
+	try {
+		const response = await api.post('/user/login', data)
+		return response.data
+	} catch (error: any) {
+		if (error.response && error.response.data) {
+			throw error.response.data
+		} else {
+			throw new Error('Erro inesperado, tente novamente.')
+		}
+	}
+}
