@@ -5,7 +5,8 @@ export const OrdersData = [
 		urgency: 'alta',
 		description: 'Paciente necessita de transfusão urgente após acidente de carro.',
 		state: 'pendente',
-		user_name: 'Carlos Fernandes',
+		user_name: 'carlos fernandes',
+		gender: 'masculino',
 		image: require('@/assets/images/male1.jpg'),
 		blood_type: 'O+',
 	},
@@ -16,6 +17,7 @@ export const OrdersData = [
 		description: 'Doação programada para paciente em tratamento de anemia.',
 		state: 'pendente',
 		user_name: 'Ana Souza',
+		gender: 'femenino',
 		image: require('@/assets/images/female1.jpeg'),
 		blood_type: 'A-',
 	},
@@ -26,6 +28,7 @@ export const OrdersData = [
 		description: 'Necessidade de sangue para cirurgia programada.',
 		state: 'concluído',
 		user_name: 'Miguel Oliveira',
+		gender: 'masculino',
 		blood_type: 'B+',
 	},
 	{
@@ -35,6 +38,7 @@ export const OrdersData = [
 		description: 'Emergência pediátrica requer transfusão imediata.',
 		state: 'pendente',
 		user_name: 'Patrícia Gomes',
+		gender: 'femenino',
 		image: require('@/assets/images/female2.jpeg'),
 		blood_type: 'AB-',
 	},
@@ -45,7 +49,23 @@ export const OrdersData = [
 		description: 'Reabastecimento de banco de sangue.',
 		state: 'cancelado',
 		user_name: 'Fernando Lima',
+		gender: 'masculino',
 		image: require('@/assets/images/male3.jpeg'),
 		blood_type: 'O-',
+	},
+]
+
+export const NotificationsData = [
+	{
+		id: 1,
+		title: 'Solicitação de doação',
+		message: OrdersData[0].user_name + ' Necessita de doação de sangue.',
+		date: '05 de Março de 2023',
+	},
+	{
+		id: 2,
+		title: 'Solicitação de doação',
+		message: OrdersData[2].user_name + ' Necessita de doação de sangue.',
+		date: '20 de Novembro de 2024',
 	},
 ]

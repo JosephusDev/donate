@@ -22,6 +22,5 @@ export const s = StyleSheet.create({
 		alignItems: 'center',
 		paddingHorizontal: 30,
 		gap: 10,
-		marginBottom: 30,
 	},
 })

@@ -18,6 +18,7 @@ export const s = StyleSheet.create({
 	flatlist: {
 		flex: 1,
 		width: '100%',
+		marginTop: 20,
 	},
 	item: {
 		paddingVertical: 10,
@@ -48,9 +49,14 @@ export const s = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: colors.gray[400],
 		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	middle: {
 		width: '65%',
+		gap: 5,
+	},
+	notificationBody: {
+		width: '80%',
 		gap: 5,
 	},
 	right: {
@@ -62,5 +68,9 @@ export const s = StyleSheet.create({
 		textAlign: 'center',
 		fontFamily: fontFamily.bold,
 		fontSize: 14,
+	},
+	containerButton: {
+		flexDirection: 'row',
+		gap: 20,
 	},
 })
