@@ -49,7 +49,7 @@ const screenOptions = ({ route }: { route: { name: string } }) => {
 
 export default function TabNavigation() {
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
 			<View style={s.header}>
 				<Text style={s.title}>Doe</Text>
 				<Menu size={25} color={'#000000'} />

@@ -14,7 +14,7 @@ export const s = StyleSheet.create({
 	},
 	title: {
 		fontFamily: fontFamily.bold,
-		fontSize: 23,
+		fontSize: 20,
 	},
 	toolBar: {
 		flexDirection: 'row',

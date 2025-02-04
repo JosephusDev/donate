@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native'
 
 export const s = StyleSheet.create({
 	avatar: {
-		width: 50,
-		height: 50,
+		width: 40,
+		height: 40,
 		borderRadius: 50,
 		backgroundColor: colors.main.dark,
 		justifyContent: 'center',
