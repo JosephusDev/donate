@@ -1,22 +1,28 @@
-import Feather from '@expo/vector-icons/Feather'
-import { Pressable, Text, TextInput, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import { s } from './styles'
-import { Button } from '../button'
 import Avatar from '../avatar'
 import Input from '../input'
 
-export default function Header() {
+export default function Header({
+	title,
+	showButton = true,
+	showInput = true,
+}: { title: string; showButton?: boolean; showInput?: boolean }) {
 	return (
 		<View style={s.container}>
 			<View style={s.containerTitle}>
-				<Text style={s.title}>Pedidos</Text>
+				<Text style={s.title}>{title}</Text>
 			</View>
-			<View style={s.toolBar}>
-				<Input placeholder='Pesquisar...' />
-				<Pressable>
-					<Avatar icon='plus' style={{ borderRadius: 10 }} />
-				</Pressable>
-			</View>
+			{showInput && (
+				<View style={s.toolBar}>
+					<Input placeholder='Pesquisar...' />
+					{showButton && (
+						<Pressable>
+							<Avatar icon='plus' style={{ borderRadius: 10 }} />
+						</Pressable>
+					)}
+				</View>
+			)}
 		</View>
 	)
 }
