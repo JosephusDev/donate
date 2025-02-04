@@ -3,19 +3,20 @@ import { colors, fontFamily } from '@/styles/theme'
 
 export const s = StyleSheet.create({
 	input: {
-		width: '100%',
-		borderWidth: 1,
-		borderColor: colors.main.base,
-		borderRadius: 5,
+		width: '95%',
 		color: colors.gray[600],
-		paddingVertical: 16,
-		paddingHorizontal: 10,
 		fontFamily: fontFamily.regular,
-		marginBottom: 10,
 		fontSize: 16,
 	},
-	inputFocused: {
-		borderColor: colors.main.dark,
-		color: colors.main.base,
+	inputContainer: {
+		width: '100%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		borderWidth: 1,
+		borderColor: colors.gray[300],
+		borderRadius: 10,
+		paddingHorizontal: 10,
+		height: 50,
+		gap: 10,
 	},
 })

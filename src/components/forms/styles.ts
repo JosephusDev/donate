@@ -10,7 +10,7 @@ export const s = StyleSheet.create({
 	input: {
 		borderWidth: 1,
 		borderColor: colors.gray[300],
-		borderRadius: 5,
+		borderRadius: 10,
 		padding: '4%',
 		marginBottom: '3%',
 		color: colors.gray[600],
