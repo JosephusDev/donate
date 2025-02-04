@@ -1,11 +1,10 @@
 import React from 'react'
-import { View, Text, TextInput, Alert } from 'react-native'
+import { View, Text, TextInput } from 'react-native'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { GenderEnum, UserType, UserTypeEnum } from '@/types'
 import { Button } from '../button'
 import Feather from '@expo/vector-icons/Feather'
-import Toast from 'react-native-toast-message'
 import { create } from '@/models/user'
 import { showToast } from '../customToast'
 
