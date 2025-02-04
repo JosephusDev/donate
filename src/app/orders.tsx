@@ -25,7 +25,9 @@ export default function Orders() {
 									)}
 
 									<View style={s.middle}>
-										<Text style={s.title}>{item.user_name}</Text>
+										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
+											{item.user_name}
+										</Text>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
 											{item.description}
 										</Text>

@@ -4,8 +4,8 @@ import { colors, fontFamily } from '@/styles/theme'
 export const s = StyleSheet.create({
 	container: {
 		position: 'absolute',
-		top: 1,
-		right: 0,
+		top: 0,
+		right: 1,
 		backgroundColor: colors.main.base,
 		borderRadius: 20,
 		width: 23,
