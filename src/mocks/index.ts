@@ -1,3 +1,6 @@
+import { urgencyEnum } from '@/types'
+import { capitalizeName } from '@/utils/functions'
+
 export const OrdersData = [
 	{
 		id: 1,
@@ -67,5 +70,24 @@ export const NotificationsData = [
 		title: 'Solicitação de doação',
 		message: OrdersData[2].user_name + ' Necessita de doação de sangue.',
 		date: '20 de Novembro de 2024',
+	},
+]
+
+export const UrgencyType = [
+	{
+		id: null,
+		name: 'Selecione o tipo de urgência',
+	},
+	{
+		id: urgencyEnum.high,
+		name: capitalizeName(urgencyEnum.high),
+	},
+	{
+		id: urgencyEnum.medium,
+		name: capitalizeName(urgencyEnum.medium),
+	},
+	{
+		id: urgencyEnum.normal,
+		name: capitalizeName(urgencyEnum.normal),
 	},
 ]

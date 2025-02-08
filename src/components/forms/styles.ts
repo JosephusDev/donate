@@ -2,6 +2,10 @@ import { StyleSheet } from 'react-native'
 import { colors, fontFamily } from '@/styles/theme'
 
 export const s = StyleSheet.create({
+	container: {
+		marginTop: 30,
+		width: '100%',
+	},
 	label: {
 		fontSize: 12,
 		marginBottom: '2%',
