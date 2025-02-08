@@ -9,9 +9,10 @@ export const s = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: colors.gray[300],
 		borderRadius: 10,
-		width: '100%',
+		width: '90%',
 		paddingVertical: 30,
 		gap: 10,
+		marginTop: 20,
 	},
 	text: {
 		textAlign: 'center',

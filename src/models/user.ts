@@ -26,3 +26,16 @@ export const login = async (data: Pick<UserType, 'username' | 'password'>) => {
 		}
 	}
 }
+
+export const getDonates = async () => {
+	try {
+		const response = await api.get('/user/donates')
+		return response.data
+	} catch (error: any) {
+		if (error.response && error.response.data) {
+			throw error.response.data
+		} else {
+			throw new Error('Erro inesperado, tente novamente.')
+		}
+	}
+}
