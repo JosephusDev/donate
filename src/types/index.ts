@@ -1,3 +1,4 @@
+interface NodeRequire {}
 export enum GenderEnum {
 	female = 'femenino',
 	male = 'masculino',
@@ -21,4 +22,15 @@ export type UserType = {
 	description: string | null
 	blood_type_id: number | null
 	gender: GenderEnum
+}
+
+export type BloodType = {
+	name: string
+}
+
+export type DonateType = {
+	image?: NodeRequire
+	fullname: string
+	gender: GenderEnum
+	blood_type: Pick<BloodType, 'name'>
 }

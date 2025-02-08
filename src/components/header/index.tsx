@@ -3,11 +3,23 @@ import { s } from './styles'
 import Avatar from '../avatar'
 import Input from '../input'
 
+interface IHeaderProps {
+	title: string
+	showButton?: boolean
+	showInput?: boolean
+	onSearchChange?: (value: string) => void
+	searchValue?: string
+	onClick?: () => void
+}
+
 export default function Header({
 	title,
 	showButton = true,
 	showInput = true,
-}: { title: string; showButton?: boolean; showInput?: boolean }) {
+	onSearchChange,
+	onClick,
+	searchValue,
+}: IHeaderProps) {
 	return (
 		<View style={s.container}>
 			<View style={s.containerTitle}>
@@ -15,9 +27,9 @@ export default function Header({
 			</View>
 			{showInput && (
 				<View style={s.toolBar}>
-					<Input placeholder='Pesquisar...' />
+					<Input placeholder='Pesquisar...' onValueChange={onSearchChange} value={searchValue} />
 					{showButton && (
-						<Pressable>
+						<Pressable onPress={onClick}>
 							<Avatar icon='plus' style={{ borderRadius: 10 }} />
 						</Pressable>
 					)}
