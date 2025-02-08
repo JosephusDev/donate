@@ -37,7 +37,7 @@ export const s = StyleSheet.create({
 		fontFamily: fontFamily.bold,
 	},
 	description: {
-		width: '90%',
+		width: '80%',
 		fontFamily: fontFamily.regular,
 		fontSize: 13,
 		color: colors.gray[500],
@@ -56,7 +56,7 @@ export const s = StyleSheet.create({
 		gap: 5,
 	},
 	notificationBody: {
-		width: '80%',
+		width: '100%',
 		gap: 5,
 	},
 	right: {

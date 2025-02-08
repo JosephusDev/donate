@@ -34,3 +34,14 @@ export type DonateType = {
 	gender: GenderEnum
 	blood_type: Pick<BloodType, 'name'>
 }
+
+export type notificationType = {
+	description: string
+	donate_location: string
+	id: number
+	state: string
+	urgency: string
+	user: {
+		fullname: string
+	}
+}
