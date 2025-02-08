@@ -14,8 +14,9 @@ import { Alert, FlatList, Image, Pressable, SafeAreaView, Text, View } from 'rea
 
 export default function Notification() {
 	const [notifications, setNotifications] = useState<notificationType[]>()
-	const getDonate = async () => {
-		await getNotifications(2)
+	const getData = async () => {
+		// vai depender do login
+		await getNotifications(32)
 			.then(Response => {
 				console.log(Response)
 				setNotifications(Response)
@@ -29,7 +30,7 @@ export default function Notification() {
 	}
 
 	useEffect(() => {
-		getDonate()
+		getData()
 	}, [])
 	return (
 		<View style={s.container}>

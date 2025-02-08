@@ -10,6 +10,18 @@ export enum UserTypeEnum {
 	hospital = 'hospital',
 }
 
+export enum urgencyEnum {
+	high = 'alta',
+	medium = 'media',
+	normal = 'normal',
+}
+
+export enum stateEnum {
+	pendente = 'pendente',
+	concluído = 'concluído',
+	cancelado = 'cancelado',
+}
+
 export type UserType = {
 	email: string
 	username: string
@@ -25,6 +37,7 @@ export type UserType = {
 }
 
 export type BloodType = {
+	id: number | null
 	name: string
 }
 
@@ -44,4 +57,20 @@ export type notificationType = {
 	user: {
 		fullname: string
 	}
+}
+
+export type OrderType = {
+	id: number
+	donate_location: string
+	urgency: urgencyEnum
+	description: string
+	state: stateEnum
+	user_id: number
+	blood_type_id: number
+	blood_type: BloodType
+}
+
+export interface ISelect {
+	id?: number | string | null
+	name: string
 }
