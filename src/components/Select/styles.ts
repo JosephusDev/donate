@@ -11,6 +11,7 @@ export const s = StyleSheet.create({
 		paddingHorizontal: 8,
 		marginTop: 5,
 		width: '100%',
+		color: colors.gray[600],
 	},
 	option: {
 		fontSize: 12,
