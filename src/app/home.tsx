@@ -15,14 +15,9 @@ export default function Home() {
 						return (
 							<Pressable onPress={() => Alert.alert('Doe', item.user_name)}>
 								<View style={s.item}>
-									{item.image ? (
-										<Image source={item.image} style={s.image} />
-									) : (
-										<View style={s.image}>
-											<Text style={s.fallback}>{formatedName(item.user_name)}</Text>
-										</View>
-									)}
-
+									<View style={s.image}>
+										<Text style={s.fallback}>{formatedName(capitalizeName(item.user_name))}</Text>
+									</View>
 									<View style={s.middle}>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
 											{capitalizeName(item.user_name)}

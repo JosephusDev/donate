@@ -20,8 +20,9 @@ export default function Donates() {
 				setDonates(Response)
 			})
 			.catch(error => {
+				console.error(error)
 				// Se for um erro de validação, pega a mensagem específica
-				const errorMessage = error?.error?.message || 'Erro ao realizar o cadastro'
+				const errorMessage = error?.error?.message || 'Erro ao realizar carregar doadores.'
 				// apresenta do Erros
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
 			})

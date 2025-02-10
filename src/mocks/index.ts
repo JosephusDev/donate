@@ -10,7 +10,6 @@ export const OrdersData = [
 		state: 'pendente',
 		user_name: 'carlos fernandes',
 		gender: 'masculino',
-		image: require('@/assets/images/male1.jpg'),
 		blood_type: 'O+',
 	},
 	{
@@ -21,7 +20,6 @@ export const OrdersData = [
 		state: 'pendente',
 		user_name: 'Ana Souza',
 		gender: 'femenino',
-		image: require('@/assets/images/female1.jpeg'),
 		blood_type: 'A-',
 	},
 	{
@@ -42,7 +40,6 @@ export const OrdersData = [
 		state: 'pendente',
 		user_name: 'Patrícia Gomes',
 		gender: 'femenino',
-		image: require('@/assets/images/female2.jpeg'),
 		blood_type: 'AB-',
 	},
 	{
@@ -53,7 +50,6 @@ export const OrdersData = [
 		state: 'cancelado',
 		user_name: 'Fernando Lima',
 		gender: 'masculino',
-		image: require('@/assets/images/male3.jpeg'),
 		blood_type: 'O-',
 	},
 ]

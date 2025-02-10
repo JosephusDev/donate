@@ -10,6 +10,6 @@ export const colors = {
 	main: {
 		light: '#FB6B6E', // Um tom mais claro
 		base: '#F94144', // A cor base original
-		dark: '#C32F32', // Um tom mais escuro
+		dark: '#FB6B6E', // Um tom mais escuro
 	},
 }

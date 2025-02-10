@@ -46,7 +46,7 @@ export default function Notification() {
 								<Pressable onPress={() => Alert.alert('Doe', item.user.fullname)}>
 									<View style={s.item}>
 										<View style={s.image}>
-											<Bell color={colors.main.dark} />
+											<Bell color={'#FFFFFF'} />
 										</View>
 										<View style={s.notificationBody}>
 											<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>

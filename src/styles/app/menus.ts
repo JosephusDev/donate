@@ -5,7 +5,7 @@ import { colors } from '../colors'
 export const s = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
+		backgroundColor: '#F5F5F5',
 		alignItems: 'center',
 		paddingVertical: 30,
 		paddingHorizontal: 20,
@@ -16,17 +16,14 @@ export const s = StyleSheet.create({
 		textAlign: 'center',
 	},
 	flatlist: {
-		flex: 1,
 		width: '100%',
 		marginTop: 20,
+		backgroundColor: '#FFFFFF',
+		borderRadius: 10,
 	},
 	item: {
-		paddingVertical: 10,
+		paddingVertical: 15,
 		paddingHorizontal: 10,
-		marginVertical: 4,
-		borderBottomWidth: 1,
-		borderColor: colors.gray[200],
-		borderRadius: 10,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -37,7 +34,7 @@ export const s = StyleSheet.create({
 		fontFamily: fontFamily.bold,
 	},
 	description: {
-		width: '80%',
+		width: '90%',
 		fontFamily: fontFamily.regular,
 		fontSize: 13,
 		color: colors.gray[500],
@@ -45,9 +42,8 @@ export const s = StyleSheet.create({
 	image: {
 		width: 40,
 		height: 40,
-		borderRadius: 60,
-		borderWidth: 1,
-		borderColor: colors.gray[400],
+		borderRadius: 10,
+		backgroundColor: colors.main.light,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
@@ -68,9 +64,46 @@ export const s = StyleSheet.create({
 		textAlign: 'center',
 		fontFamily: fontFamily.bold,
 		fontSize: 14,
+		color: '#FFFFFF',
 	},
 	containerButton: {
 		flexDirection: 'row',
 		gap: 20,
+		marginRight: 5,
+	},
+	containerProfile: {
+		width: '100%',
+		alignItems: 'center',
+		flexDirection: 'column',
+		gap: 10,
+	},
+	avatar: {
+		width: 100,
+		height: 100,
+		borderRadius: 100,
+		borderWidth: 2,
+		borderColor: colors.main.light,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	username: {
+		fontSize: 16,
+		fontFamily: fontFamily.bold,
+	},
+	email: {
+		fontSize: 14,
+		fontFamily: fontFamily.regular,
+		color: colors.gray[400],
+	},
+	rightProfile: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		gap: 10,
+	},
+	titleItemProfile: {
+		fontSize: 16,
+		fontFamily: fontFamily.regular,
 	},
 })
