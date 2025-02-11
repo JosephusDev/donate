@@ -1,9 +1,7 @@
-import EmptyList from '@/components/emptyList'
-import Header from '@/components/header'
 import { OrdersData } from '@/mocks'
 import { s } from '@/styles/app/menus'
 import { capitalizeName, formatedName } from '@/utils/functions'
-import { Alert, FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
+import { Alert, FlatList, Pressable, SafeAreaView, Text, View } from 'react-native'
 
 export default function Home() {
 	return (
