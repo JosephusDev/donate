@@ -11,6 +11,7 @@ export const OrdersData = [
 		user_name: 'carlos fernandes',
 		gender: 'masculino',
 		blood_type: 'O+',
+		data: '23 de Agosto de 2024',
 	},
 	{
 		id: 2,
@@ -21,6 +22,7 @@ export const OrdersData = [
 		user_name: 'Ana Souza',
 		gender: 'femenino',
 		blood_type: 'A-',
+		data: '15 de Maio de 2025',
 	},
 	{
 		id: 3,
@@ -31,6 +33,7 @@ export const OrdersData = [
 		user_name: 'Miguel Oliveira',
 		gender: 'masculino',
 		blood_type: 'B+',
+		data: '10 de Julho de 2026',
 	},
 	{
 		id: 4,
@@ -41,6 +44,7 @@ export const OrdersData = [
 		user_name: 'Patrícia Gomes',
 		gender: 'femenino',
 		blood_type: 'AB-',
+		data: '23 de Agosto de 2024',
 	},
 	{
 		id: 5,
@@ -51,6 +55,7 @@ export const OrdersData = [
 		user_name: 'Fernando Lima',
 		gender: 'masculino',
 		blood_type: 'O-',
+		data: '25 de Julho de 2025',
 	},
 ]
 
