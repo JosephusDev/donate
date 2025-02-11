@@ -7,6 +7,7 @@ export const s = StyleSheet.create({
 		color: colors.gray[600],
 		fontFamily: fontFamily.regular,
 		fontSize: 14,
+		height: '100%',
 	},
 	inputContainer: {
 		width: '100%',

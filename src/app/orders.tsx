@@ -71,7 +71,7 @@ export default function Orders() {
 			{filteredOrders.length === 0 ? (
 				<EmptyList text='Nenhum pedido encontrado' />
 			) : (
-				<SafeAreaView style={[s.flatlist, { backgroundColor: '#F5F5F5' }]}>
+				<SafeAreaView style={{ backgroundColor: '#F5F5F5', width: '100%', marginTop: 20 }}>
 					<FlatList
 						data={filteredOrders}
 						renderItem={({ item }) => {
@@ -82,7 +82,7 @@ export default function Orders() {
 										{
 											marginBottom: 10,
 											backgroundColor: '#FFFFFF',
-											borderRadius: 5,
+											borderRadius: 10,
 											borderLeftWidth: 2,
 											borderLeftColor: colors.main.light,
 										},

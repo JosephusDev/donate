@@ -8,8 +8,8 @@ export const colors = {
 		600: '#1A1F24',
 	},
 	main: {
-		light: '#FB6B6E', // Um tom mais claro
+		light: '#F94144', // Um tom mais claro
 		base: '#F94144', // A cor base original
-		dark: '#FB6B6E', // Um tom mais escuro
+		dark: '#F94144', // Um tom mais escuro
 	},
 }
