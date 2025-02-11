@@ -9,7 +9,10 @@ export default function Profile() {
 		<View style={s.container}>
 			<View style={s.containerProfile}>
 				{image ? (
-					<Image style={s.avatar} src={image} />
+					<View>
+						<Image style={s.profileImage} src={image} />
+						<Feather style={s.imageIcon} name='camera' size={25} color={'#FFFFFF'} />
+					</View>
 				) : (
 					<View style={s.avatar}>
 						<Feather name='camera' size={30} color={colors.main.light} />
