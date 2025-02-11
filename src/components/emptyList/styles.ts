@@ -6,8 +6,6 @@ export const s = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderWidth: 1,
-		borderColor: colors.gray[300],
 		borderRadius: 10,
 		width: '90%',
 		paddingVertical: 30,
@@ -18,6 +16,6 @@ export const s = StyleSheet.create({
 		textAlign: 'center',
 		fontFamily: fontFamily.regular,
 		fontSize: 16,
-		marginTop: 8,
+		marginTop: 5,
 	},
 })

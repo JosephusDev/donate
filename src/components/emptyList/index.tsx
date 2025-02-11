@@ -5,7 +5,7 @@ import { s } from './styles'
 export default function EmptyList({ text }: { text: string }) {
 	return (
 		<View style={s.container}>
-			<Feather name='clipboard' size={25} />
+			<Feather name='x-circle' size={35} />
 			<Text style={s.text}>{text}</Text>
 		</View>
 	)
