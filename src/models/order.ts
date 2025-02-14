@@ -1,5 +1,5 @@
 import api from '@/services/api'
-import { OrderType } from '@/types'
+import type { OrderType } from '@/types'
 
 export const getOrder = async () => {
 	try {
