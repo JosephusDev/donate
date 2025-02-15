@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import api from '@/services/api'
-import { UserType } from '@/types'
+import type { UserType } from '@/types'
 
 export const create = async (data: UserType) => {
 	try {

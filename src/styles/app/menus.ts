@@ -18,6 +18,7 @@ export const s = StyleSheet.create({
 	flatlist: {
 		width: '100%',
 		marginTop: 20,
+		marginBottom: 40,
 		backgroundColor: '#FFFFFF',
 		borderRadius: 10,
 		shadowColor: '#000000',
@@ -210,5 +211,22 @@ export const s = StyleSheet.create({
 		backgroundColor: '#F2F4F7',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	rightDate: {
+		fontSize: 12,
+		fontFamily: fontFamily.regular,
+		alignItems: 'flex-start',
+		width: '100%',
+		color: colors.gray[500],
+	},
+	online: {
+		width: 7,
+		height: 7,
+		marginRight: 8,
+		backgroundColor: colors.main.base,
+		borderRadius: 100,
+		position: 'absolute',
+		right: 0,
+		alignSelf: 'center',
 	},
 })

@@ -1,5 +1,6 @@
 import { urgencyEnum } from '@/types'
 import { capitalizeName } from '@/utils/functions'
+import { act } from 'react'
 
 export const OrdersData = [
 	{
@@ -90,5 +91,85 @@ export const UrgencyType = [
 	{
 		id: urgencyEnum.normal,
 		name: capitalizeName(urgencyEnum.normal),
+	},
+]
+
+export const UserChat = [
+	{
+		id: null,
+		name: 'Luis Silva',
+		message: 'Ola, tudo bem?',
+		date: '1 min',
+		active: true,
+	},
+	{
+		id: null,
+		name: 'Ana Souza',
+		message: 'Oi, preciso de ajuda',
+		date: '5 min',
+		active: false,
+	},
+	{
+		id: null,
+		name: 'Miguel Oliveira',
+		message: 'Estou precisando de doação de sangue',
+		date: '10 dia',
+		active: true,
+	},
+	{
+		id: null,
+		name: 'Patrícia Gomes',
+		message: 'Estou precisando de doação de sangue',
+		date: '15 sem',
+		active: false,
+	},
+	{
+		id: null,
+		name: 'Fernando Lima',
+		message: 'Estou precisando de doação de sangue',
+		date: '2 mês',
+		active: true,
+	},
+	{
+		id: null,
+		name: 'Carlos Fernandes',
+		message: 'Estou precisando de doação de sangue',
+		date: '1 ano',
+		active: false,
+	},
+	{
+		id: null,
+		name: 'Patrícia Gomes',
+		message: 'Estou precisando de doação de sangue',
+		date: '15 sem',
+		active: false,
+	},
+	{
+		id: null,
+		name: 'Fernando Lima',
+		message: 'Estou precisando de doação de sangue',
+		date: '2 mês',
+		active: true,
+	},
+	{
+		id: null,
+		name: 'Carlos Fernandes',
+		message: 'Estou precisando de doação de sangue',
+		date: '1 ano',
+		active: false,
+	},
+	{
+		id: null,
+		name: 'Patrícia Gomes',
+		message: 'Estou precisando de doação de sangue',
+		date: '15 sem',
+		active: false,
+	},
+	{
+		id: null,
+		name: 'Fernando Lima',
+		message: 'Estou precisando de doação de sangue',
+		date: '2 mês',
+		active: true,
 	},
 ]
