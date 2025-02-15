@@ -1,5 +1,6 @@
 import api from '@/services/api'
 import { OrderType } from '@/types'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const getOrder = async () => {
 	try {
