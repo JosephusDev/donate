@@ -1,6 +1,9 @@
-import TabNavigation from '@/components/navigator'
-import SignIn from './signin'
+import StackNavigation from '@/components/stackNavigation'
+import TabNavigation from '@/components/tabNavigation'
+import { useAuth } from '@/context/authContext'
 
 export default function Index() {
-	return <TabNavigation />
+	const { isAuthenticated } = useAuth()
+
+	return isAuthenticated ? <TabNavigation /> : <StackNavigation />
 }

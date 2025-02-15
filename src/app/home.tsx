@@ -7,12 +7,24 @@ import { capitalizeName } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
 import { useEffect, useState } from 'react'
 import { Image, ScrollView, Text, TextInput, View } from 'react-native'
-import { format, formatDate } from 'date-fns'
+import { format } from 'date-fns'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Home() {
-	const image = 'https://avatars.githubusercontent.com/u/127633531?v=4'
+	const [imageUri, setImageUri] = useState('')
 	const [orders, setOrders] = useState<OrderType[]>([])
 	const [search, setSearch] = useState('')
+
+	useEffect(() => {
+		const fetchImage = async () => {
+			const localImage = await AsyncStorage.getItem('imagem')
+			if (localImage) {
+				setImageUri(localImage)
+			}
+		}
+		fetchImage()
+	}, [])
+
 	const getOrders = async () => {
 		await getOrder()
 			.then(response => {
@@ -41,7 +53,7 @@ export default function Home() {
 	return (
 		<ScrollView style={{ flex: 1, padding: 20 }}>
 			<View style={s.headerHome}>
-				<Image style={[s.avatar, { width: 50, height: 50 }]} src={image} />
+				<Image style={[s.avatar, { width: 50, height: 50 }]} src={imageUri} />
 				<TextInput
 					value={search}
 					onChangeText={setSearch}
