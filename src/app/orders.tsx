@@ -19,7 +19,7 @@ export default function Orders() {
 
 	const getOrders = async () => {
 		// vai depender do login
-		await getUserOrders(3)
+		await getUserOrders(32)
 			.then(Response => {
 				setOrders(Response)
 			})

@@ -16,12 +16,12 @@ export default function Donates() {
 	const [search, setSearch] = useState('')
 	const getDonate = async () => {
 		await getDonates()
-			.then(Response => {
-				setDonates(Response)
+			.then(response => {
+				setDonates(response)
 			})
 			.catch(error => {
 				// Se for um erro de validação, pega a mensagem específica
-				const errorMessage = error?.error?.message || 'Erro ao realizar carregar doadores.'
+				const errorMessage = error?.error?.message || 'Erro ao carregar doadores.'
 				// apresenta do Erros
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
 			})

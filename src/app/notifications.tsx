@@ -16,14 +16,13 @@ export default function Notification() {
 	const [notifications, setNotifications] = useState<notificationType[]>()
 	const getData = async () => {
 		// vai depender do login
-		await getNotifications(5)
-			.then(Response => {
-				console.log(Response)
-				setNotifications(Response)
+		await getNotifications(32)
+			.then(response => {
+				setNotifications(response)
 			})
 			.catch(error => {
 				// Se for um erro de validação, pega a mensagem específica
-				const errorMessage = error?.error?.message || 'Erro ao realizar o cadastro'
+				const errorMessage = error?.error?.message || 'Erro ao carregar notificações'
 				// apresenta do Erros
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
 			})
