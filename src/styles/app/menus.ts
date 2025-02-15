@@ -139,6 +139,7 @@ export const s = StyleSheet.create({
 		paddingHorizontal: 20,
 	},
 	headerHome: {
+		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -151,13 +152,15 @@ export const s = StyleSheet.create({
 		shadowRadius: 2,
 		marginBottom: 20,
 		elevation: 5,
+		gap: 5,
 	},
 	searchHome: {
+		flex: 1,
 		borderRadius: 100,
 		backgroundColor: '#F2F4F7',
 		fontFamily: fontFamily.regular,
 		height: '100%',
-		width: '80%',
+		width: '100%',
 		padding: 10,
 		color: colors.gray[500],
 	},
@@ -187,7 +190,6 @@ export const s = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		gap: 10,
 	},
 	post: {
 		fontSize: 15,
