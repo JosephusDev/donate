@@ -18,6 +18,7 @@ export const s = StyleSheet.create({
 	flatlist: {
 		width: '100%',
 		marginTop: 20,
+		marginBottom: 40,
 		backgroundColor: '#FFFFFF',
 		borderRadius: 10,
 		shadowColor: '#000000',
@@ -139,6 +140,7 @@ export const s = StyleSheet.create({
 		paddingHorizontal: 20,
 	},
 	headerHome: {
+		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -151,13 +153,15 @@ export const s = StyleSheet.create({
 		shadowRadius: 2,
 		marginBottom: 20,
 		elevation: 5,
+		gap: 5,
 	},
 	searchHome: {
+		flex: 1,
 		borderRadius: 100,
 		backgroundColor: '#F2F4F7',
 		fontFamily: fontFamily.regular,
 		height: '100%',
-		width: '80%',
+		width: '100%',
 		padding: 10,
 		color: colors.gray[500],
 	},
@@ -187,7 +191,6 @@ export const s = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		gap: 10,
 	},
 	post: {
 		fontSize: 15,
@@ -208,5 +211,22 @@ export const s = StyleSheet.create({
 		backgroundColor: '#F2F4F7',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	rightDate: {
+		fontSize: 12,
+		fontFamily: fontFamily.regular,
+		alignItems: 'flex-start',
+		width: '100%',
+		color: colors.gray[500],
+	},
+	online: {
+		width: 7,
+		height: 7,
+		marginRight: 8,
+		backgroundColor: colors.main.base,
+		borderRadius: 100,
+		position: 'absolute',
+		right: 0,
+		alignSelf: 'center',
 	},
 })

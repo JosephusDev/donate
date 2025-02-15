@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react'
 import { Alert, FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
 
 export default function Donates() {
-	const [donates, setDonates] = useState<DonateType[]>()
+	const [donates, setDonates] = useState<DonateType[]>([])
 	const [search, setSearch] = useState('')
 	const getDonate = async () => {
 		await getDonates()
@@ -20,7 +20,6 @@ export default function Donates() {
 				setDonates(Response)
 			})
 			.catch(error => {
-				console.error(error)
 				// Se for um erro de validação, pega a mensagem específica
 				const errorMessage = error?.error?.message || 'Erro ao realizar carregar doadores.'
 				// apresenta do Erros

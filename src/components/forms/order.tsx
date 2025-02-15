@@ -40,7 +40,7 @@ export default function OrderForm({ refreshOrders, onClose }: { refreshOrders: (
 	const onSubmit: SubmitHandler<OrderType> = async data => {
 		data.blood_type_id = Number(data.blood_type_id)
 		data.state = stateEnum.pendente
-		data.user_id = 32
+		data.user_id = 5
 		console.log(data)
 		await createOrder(data)
 			.then(response => {

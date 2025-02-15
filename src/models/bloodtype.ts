@@ -1,8 +1,12 @@
 import api from '@/services/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const getBloodType = async () => {
 	try {
-		const response = await api.get('/bloodtype')
+		const token = AsyncStorage.getItem('token')
+		const response = await api.get('/bloodtype', {
+			headers: { Authorization: `Bearer ${token}` },
+		})
 		return response.data
 	} catch (error: any) {
 		if (error.response && error.response.data) {

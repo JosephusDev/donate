@@ -16,7 +16,7 @@ export default function Notification() {
 	const [notifications, setNotifications] = useState<notificationType[]>()
 	const getData = async () => {
 		// vai depender do login
-		await getNotifications(32)
+		await getNotifications(5)
 			.then(Response => {
 				console.log(Response)
 				setNotifications(Response)
