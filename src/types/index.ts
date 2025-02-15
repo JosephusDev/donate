@@ -67,10 +67,21 @@ export type OrderType = {
 	state: stateEnum
 	user_id: number
 	blood_type_id: number
-	blood_type: BloodType
+	date: Date
+	user: Pick<UserType, 'fullname'>
+	blood_type: Pick<BloodType, 'name'>
 }
 
-export interface ISelect {
+export type ISelect = {
 	id?: number | string | null
 	name: string
+}
+
+export type MessageType = {
+	id?: number
+	user_id_from: number
+	user_id_to: number
+	message: string
+	user1: Pick<UserType, 'fullname'>
+	user2: Pick<UserType, 'fullname'>
 }
