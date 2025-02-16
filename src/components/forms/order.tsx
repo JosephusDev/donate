@@ -10,13 +10,19 @@ import { createOrder } from '@/models/order'
 import Select from '../Select'
 import api from '@/services/api'
 import { UrgencyType } from '@/mocks'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+const API_TOKEN = process.env.EXPO_PUBLIC_API_TOKEN
 
 export default function OrderForm({ refreshOrders, onClose }: { refreshOrders: () => void; onClose: () => void }) {
 	const [bloodTypes, setBloodTypes] = useState<BloodType[]>([])
 
 	const getBloodTypes = async () => {
 		try {
-			const response = await api.get<BloodType[]>('/bloodtypes')
+			const token = (await AsyncStorage.getItem('token')) ?? API_TOKEN
+			const response = await api.get<BloodType[]>('/bloodtypes', {
+				headers: { Authorization: `Bearer ${token}` },
+			})
 			const data = response.data
 			data.unshift({
 				id: 0,

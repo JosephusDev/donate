@@ -4,7 +4,6 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { Button } from '../button'
 import { UserType } from '@/types'
-import { showToast } from '../customToast'
 import Feather from '@expo/vector-icons/Feather'
 import { useAuth } from '@/context/authContext'
 

@@ -1,6 +1,6 @@
 import { Link } from 'expo-router'
-import { Animated, PanResponder, View } from 'react-native'
-import { s } from '@/styles/app/signup'
+import { Animated, PanResponder, Text, View } from 'react-native'
+import { s } from '@/styles/app/auth'
 import Card from '@/components/card'
 import { useEffect, useRef, useState } from 'react'
 import TabsHeader from '@/components/tabsHeader'
@@ -63,9 +63,12 @@ export default function SignUp() {
 								</Animated.View>
 							</View>
 						)}
-						<Link href={'/signin'} style={s.links}>
-							Já tem uma conta? Faça login
-						</Link>
+						<View style={s.footer}>
+							<Text style={s.textLeft}>Já tem uma conta?</Text>
+							<Link href={'/'} style={s.links}>
+								Fazer login
+							</Link>
+						</View>
 					</View>
 				}
 			/>

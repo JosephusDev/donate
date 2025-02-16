@@ -76,7 +76,9 @@ export default function Profile() {
 					{imageUri ? (
 						<View>
 							<Image style={s.profileImage} src={imageUri} />
-							<Feather style={s.imageIcon} name='camera' size={25} color={'#FFFFFF'} />
+							<View style={s.containerImageIcon}>
+								<Feather name='camera' size={15} color={'#FFFFFF'} />
+							</View>
 						</View>
 					) : (
 						<View style={[s.avatar, { borderColor: colors.gray[300] }]}>
@@ -89,8 +91,8 @@ export default function Profile() {
 				<View style={s.flatlist}>
 					<View style={[s.item, { paddingVertical: 10 }]}>
 						<View style={s.rightProfile}>
-							<View style={s.image}>
-								<Feather name='user' size={20} color={'#FFFFFF'} />
+							<View style={[s.image, { backgroundColor: '#F2F4F7' }]}>
+								<Feather name='user' size={20} color={colors.gray[500]} />
 							</View>
 							<Text style={s.titleItemProfile}>Editar Perfil</Text>
 						</View>
@@ -98,8 +100,8 @@ export default function Profile() {
 					</View>
 					<View style={[s.item, { paddingVertical: 10 }]}>
 						<View style={s.rightProfile}>
-							<View style={s.image}>
-								<Feather name='settings' size={20} color={'#FFFFFF'} />
+							<View style={[s.image, { backgroundColor: '#F2F4F7' }]}>
+								<Feather name='settings' size={20} color={colors.gray[500]} />
 							</View>
 							<Text style={s.titleItemProfile}>Configurações</Text>
 						</View>

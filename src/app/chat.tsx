@@ -5,6 +5,7 @@ import { getMessages } from '@/models/chat'
 import { s } from '@/styles/app/menus'
 import { MessageType } from '@/types'
 import { capitalizeName, formatedName, getUniqueMessages } from '@/utils/functions'
+import { Feather } from '@expo/vector-icons'
 import { useEffect, useState } from 'react'
 import { Alert, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native'
 
@@ -55,7 +56,7 @@ export default function Chats() {
 							>
 								<View style={s.item}>
 									<View style={s.image}>
-										<Text style={s.fallback}>{formatedName(returnOtherUser(item))}</Text>
+										<Feather name='message-circle' color={'#FFFFFF'} size={20} />
 									</View>
 									<View style={[{ width: '100%', gap: 0 }]}>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>

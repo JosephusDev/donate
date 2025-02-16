@@ -7,6 +7,7 @@ import { s } from '@/styles/app/menus'
 import { colors } from '@/styles/colors'
 import { DonateType } from '@/types'
 import { capitalizeName, capitalizeText, formatedName } from '@/utils/functions'
+import { Feather } from '@expo/vector-icons'
 import { Merge, Search } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
 import { Alert, FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
@@ -49,7 +50,7 @@ export default function Donates() {
 											<Image source={item.image} style={s.image} />
 										) : (
 											<View style={s.image}>
-												<Text style={s.fallback}>{formatedName(item.fullname)}</Text>
+												<Feather name='user' color={'#FFFFFF'} size={20} />
 											</View>
 										)}
 

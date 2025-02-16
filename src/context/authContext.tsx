@@ -20,11 +20,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		await api
 			.post('/user/login', data)
 			.then(response => {
-				const data = response.data
-				if (data) {
-					AsyncStorage.setItem('token', data?.token)
+				const result = response.data
+				if (result) {
+					AsyncStorage.setItem('token', result?.token)
 					setAuthenticated(true)
-					setData(data?.user)
+					setData(result?.user)
+					console.log(result)
 				} else {
 					showToast({
 						title: 'Doe',

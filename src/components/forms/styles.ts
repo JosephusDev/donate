@@ -7,19 +7,19 @@ export const s = StyleSheet.create({
 		width: '100%',
 	},
 	label: {
-		fontSize: 12,
+		fontSize: 13,
 		marginBottom: '2%',
 		fontFamily: fontFamily.medium,
 	},
 	input: {
 		borderWidth: 1,
 		borderColor: colors.gray[300],
-		borderRadius: 10,
+		borderRadius: 5,
 		padding: '4%',
 		marginBottom: '3%',
 		color: colors.gray[600],
 		fontFamily: fontFamily.regular,
-		fontSize: 12,
+		fontSize: 13,
 	},
 	error: {
 		color: colors.main.light,
