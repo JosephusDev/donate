@@ -3,6 +3,7 @@ import EmptyList from '@/components/emptyList'
 import OrderForm from '@/components/forms/order'
 import Header from '@/components/header'
 import MyModal from '@/components/MyModal'
+import { useAuth } from '@/context/authContext'
 import { deleteOrder, getUserOrders } from '@/models/order'
 import { s } from '@/styles/app/menus'
 import { colors } from '@/styles/colors'
@@ -16,10 +17,11 @@ export default function Orders() {
 	const [orders, setOrders] = useState<OrderType[]>([])
 	const [search, setSearch] = useState('')
 	const [visible, setVisible] = useState(false)
+	const { data } = useAuth()
 
 	const getOrders = async () => {
 		// vai depender do login
-		await getUserOrders(32)
+		await getUserOrders(data?.id || 0)
 			.then(response => {
 				setOrders(response)
 			})

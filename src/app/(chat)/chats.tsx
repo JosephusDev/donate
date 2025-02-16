@@ -1,20 +1,23 @@
 import { showToast } from '@/components/customToast'
 import EmptyList from '@/components/emptyList'
 import Header from '@/components/header'
-import { getMessages } from '@/models/chat'
+import { useAuth } from '@/context/authContext'
+import { getChats } from '@/models/chat'
 import { s } from '@/styles/app/menus'
 import { MessageType } from '@/types'
 import { capitalizeName, formatedName, getUniqueMessages } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
+import { Link } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Alert, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native'
 
 export default function Chats() {
 	const [chats, setChats] = useState<MessageType[]>([])
 	const [search, setSearch] = useState('')
+	const { data } = useAuth()
 
-	const getChats = async () => {
-		await getMessages(32)
+	const getChatsData = async () => {
+		await getChats(data?.id || 0)
 			.then(response => {
 				const filteredChats = getUniqueMessages(response)
 				setChats(filteredChats)
@@ -26,17 +29,17 @@ export default function Chats() {
 	}
 
 	useEffect(() => {
-		getChats()
+		getChatsData()
 	}, [])
 
 	const returnOtherUser = (chat: MessageType) => {
-		return chat.user_id_to === 32 ? chat.user1.fullname : chat.user2.fullname
+		return chat.user_id_to === data?.id ? chat?.user1?.fullname : chat?.user2?.fullname
 	}
 
 	const filteredChats = search
 		? chats.filter(
 				v =>
-					returnOtherUser(v).toLowerCase().includes(search.toLowerCase()) ||
+					(returnOtherUser(v) ?? '').toLowerCase().includes(search.toLowerCase()) ||
 					v.message.toLowerCase().includes(search.toLowerCase()),
 			)
 		: chats
@@ -50,9 +53,9 @@ export default function Chats() {
 				) : (
 					<SafeAreaView style={s.flatlist}>
 						{filteredChats.map(item => (
-							<Pressable
+							<Link
 								key={item.id}
-								onPress={() => Alert.alert('Mensagem de ' + returnOtherUser(item), item.message)}
+								href={`/(chat)/chat/${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
 							>
 								<View style={s.item}>
 									<View style={s.image}>
@@ -60,7 +63,7 @@ export default function Chats() {
 									</View>
 									<View style={[{ width: '100%', gap: 0 }]}>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
-											{capitalizeName(returnOtherUser(item))}
+											{capitalizeName(returnOtherUser(item) ?? '')}
 										</Text>
 										<Text
 											ellipsizeMode='tail'
@@ -71,7 +74,7 @@ export default function Chats() {
 										</Text>
 									</View>
 								</View>
-							</Pressable>
+							</Link>
 						))}
 					</SafeAreaView>
 				)}

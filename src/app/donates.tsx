@@ -8,6 +8,7 @@ import { colors } from '@/styles/colors'
 import { DonateType } from '@/types'
 import { capitalizeName, capitalizeText, formatedName } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
+import { Link } from 'expo-router'
 import { Merge, Search } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
 import { Alert, FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
@@ -44,7 +45,7 @@ export default function Donates() {
 						data={filteredDonetes}
 						renderItem={({ item, index }) => {
 							return (
-								<Pressable onPress={() => Alert.alert('Doe', item.fullname)}>
+								<Link href={`/(chat)/chat/${item.id}`}>
 									<View style={s.item}>
 										{item.image ? (
 											<Image source={item.image} style={s.image} />
@@ -65,7 +66,7 @@ export default function Donates() {
 										</View>
 										<Text style={s.right}>{item.blood_type.name}</Text>
 									</View>
-								</Pressable>
+								</Link>
 							)
 						}}
 					/>
