@@ -23,6 +23,7 @@ export enum stateEnum {
 }
 
 export type UserType = {
+	id: number
 	email: string
 	username: string
 	password: string
@@ -42,6 +43,7 @@ export type BloodType = {
 }
 
 export type DonateType = {
+	id: number
 	image?: NodeRequire
 	fullname: string
 	gender: GenderEnum
@@ -54,9 +56,7 @@ export type notificationType = {
 	id: number
 	state: string
 	urgency: string
-	user: {
-		fullname: string
-	}
+	user: Pick<UserType, 'id' | 'fullname'>
 }
 
 export type OrderType = {
@@ -82,6 +82,6 @@ export type MessageType = {
 	user_id_from: number
 	user_id_to: number
 	message: string
-	user1: Pick<UserType, 'fullname'>
-	user2: Pick<UserType, 'fullname'>
+	user1?: Pick<UserType, 'fullname'>
+	user2?: Pick<UserType, 'fullname'>
 }

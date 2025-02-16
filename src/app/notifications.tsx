@@ -1,6 +1,7 @@
 import { showToast } from '@/components/customToast'
 import EmptyList from '@/components/emptyList'
 import Header from '@/components/header'
+import { useAuth } from '@/context/authContext'
 import { NotificationsData } from '@/mocks'
 import { getNotifications } from '@/models/order'
 import { s } from '@/styles/app/menus'
@@ -8,15 +9,17 @@ import { colors } from '@/styles/colors'
 import { notificationType } from '@/types'
 import { capitalizeName, formatedName } from '@/utils/functions'
 import Feather from '@expo/vector-icons/Feather'
+import { Link } from 'expo-router'
 import { Bell } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
 import { Alert, FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
 
 export default function Notification() {
 	const [notifications, setNotifications] = useState<notificationType[]>()
+	const { data } = useAuth()
 	const getData = async () => {
 		// vai depender do login
-		await getNotifications(32)
+		await getNotifications(data?.id || 0)
 			.then(response => {
 				setNotifications(response)
 			})
@@ -42,7 +45,7 @@ export default function Notification() {
 						data={notifications}
 						renderItem={({ item }) => {
 							return (
-								<Pressable onPress={() => Alert.alert('Doe', item.user.fullname)}>
+								<Link href={`/(chat)/chat/${item.user.id}`}>
 									<View style={s.item}>
 										<View style={s.image}>
 											<Bell color={'#FFFFFF'} />
@@ -62,7 +65,7 @@ export default function Notification() {
 											</Text>
 										</View>
 									</View>
-								</Pressable>
+								</Link>
 							)
 						}}
 						keyExtractor={item => item.id.toString()}

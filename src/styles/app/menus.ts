@@ -44,7 +44,7 @@ export const s = StyleSheet.create({
 		fontFamily: fontFamily.bold,
 	},
 	description: {
-		width: '80%',
+		width: '100%',
 		fontFamily: fontFamily.regular,
 		fontSize: 13,
 		color: colors.gray[500],
@@ -217,5 +217,59 @@ export const s = StyleSheet.create({
 		backgroundColor: '#F2F4F7',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	postFooter: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+	postMessageButton: {
+		flex: 1,
+		alignItems: 'flex-end',
+		justifyContent: 'flex-end',
+	},
+	chatContainer: {
+		flex: 1,
+		padding: 10,
+		backgroundColor: '#F2F4F7',
+	},
+	chatView: {
+		padding: 10,
+		borderRadius: 10,
+		marginVertical: 5,
+		maxWidth: '70%',
+	},
+	chatFooter: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		padding: 10,
+		backgroundColor: '#fff',
+		justifyContent: 'center',
+		borderRadius: 10,
+	},
+	chatInput: {
+		flex: 1,
+		borderWidth: 1,
+		borderColor: '#ccc',
+		borderRadius: 10,
+		paddingHorizontal: 10,
+		height: 40,
+		fontFamily: fontFamily.regular,
+	},
+	chatButton: {
+		marginLeft: 10,
+		backgroundColor: colors.main.base,
+		padding: 8,
+		borderRadius: 10,
+	},
+	otherUser: {
+		position: 'absolute',
+		fontFamily: fontFamily.bold,
+		top: -20,
+		left: 5,
+	},
+	message: {
+		fontFamily: fontFamily.regular,
+		fontSize: 13,
+		color: colors.gray[500],
 	},
 })

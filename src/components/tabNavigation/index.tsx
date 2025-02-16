@@ -4,7 +4,7 @@ import { colors } from '@/styles/colors'
 import Home from '@/app/home'
 import Donates from '@/app/donates'
 import Orders from '@/app/orders'
-import Chat from '@/app/chat'
+import Chat from '@/app/(chat)/chats'
 import Notifications from '@/app/notifications'
 import Profile from '@/app/profile'
 import Badge from '../badge'
@@ -15,6 +15,7 @@ import { getUniqueMessages } from '@/utils/functions'
 import { useEffect, useState } from 'react'
 import { showToast } from '../customToast'
 import { getNotifications } from '@/models/order'
+import { useAuth } from '@/context/authContext'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -29,9 +30,10 @@ interface ScreenConfig {
 export default function TabNavigation() {
 	const [count_messages, setCountMessages] = useState(0)
 	const [count_notifications, setCountNotifications] = useState(0)
+	const { data } = useAuth()
 
 	const getChats = async () => {
-		await getMessages(32)
+		await getMessages(data?.id || 0)
 			.then(response => {
 				const filteredChats = getUniqueMessages(response)
 				setCountMessages(filteredChats.length)
@@ -43,7 +45,7 @@ export default function TabNavigation() {
 	}
 
 	const getAllNotifications = async () => {
-		await getNotifications(32)
+		await getNotifications(data?.id || 0)
 			.then(response => {
 				setCountNotifications(response.length)
 			})
