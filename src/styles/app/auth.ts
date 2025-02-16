@@ -20,10 +20,21 @@ export const s = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: colors.gray[300],
 	},
+	footer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		gap: 5,
+		alignItems: 'center',
+	},
+	textLeft: {
+		textAlign: 'center',
+		fontSize: 14,
+		color: colors.gray[600],
+		fontFamily: fontFamily.regular,
+	},
 	links: {
 		textAlign: 'center',
-		fontSize: 12,
-		margin: '2%',
+		fontSize: 14,
 		fontFamily: fontFamily.bold,
 	},
 })

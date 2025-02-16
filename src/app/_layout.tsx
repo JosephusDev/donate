@@ -3,6 +3,7 @@ import { StatusBar, View } from 'react-native'
 import Toast from 'react-native-toast-message'
 import Index from './index'
 import { AuthProvider } from '@/context/authContext'
+import { Stack } from 'expo-router'
 
 export default function Layout() {
 	const [fontsLoaded] = useFonts({
@@ -18,7 +19,14 @@ export default function Layout() {
 		<View style={{ flex: 1 }}>
 			<AuthProvider>
 				<StatusBar barStyle='dark-content' backgroundColor='white' />
-				<Index />
+				<Stack
+					screenOptions={{
+						headerShown: false,
+					}}
+				>
+					<Stack.Screen name='(auth)' />
+					<Stack.Screen name='index' />
+				</Stack>
 				<Toast />
 			</AuthProvider>
 		</View>

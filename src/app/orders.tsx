@@ -20,8 +20,8 @@ export default function Orders() {
 	const getOrders = async () => {
 		// vai depender do login
 		await getUserOrders(32)
-			.then(Response => {
-				setOrders(Response)
+			.then(response => {
+				setOrders(response)
 			})
 			.catch(error => {
 				// Se for um erro de validação, pega a mensagem específica
@@ -40,7 +40,7 @@ export default function Orders() {
 					text: 'Sim',
 					onPress: async () => {
 						await deleteOrder(id)
-							.then(Response => {
+							.then(_ => {
 								showToast({ type: 'success', title: 'Sucesso', message: 'Excluido com sucesso.' })
 								getOrders()
 							})
@@ -82,8 +82,8 @@ export default function Orders() {
 										{
 											marginBottom: 10,
 											backgroundColor: '#FFFFFF',
-											borderRadius: 10,
-											borderLeftWidth: 2,
+											borderRadius: 5,
+											borderLeftWidth: 1,
 											borderLeftColor: colors.main.light,
 										},
 									]}

@@ -12,7 +12,7 @@ export const s = StyleSheet.create({
 		width: '90%',
 		margin: 20,
 		backgroundColor: '#F2F2F2',
-		borderRadius: 10,
+		borderRadius: 5,
 		padding: 25,
 		alignItems: 'center',
 		shadowColor: colors.gray[600],

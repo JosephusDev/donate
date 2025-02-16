@@ -14,8 +14,8 @@ export const s = StyleSheet.create({
 	},
 	text: {
 		textAlign: 'center',
-		fontFamily: fontFamily.regular,
-		fontSize: 16,
+		fontFamily: fontFamily.bold,
+		fontSize: 13,
 		marginTop: 5,
 	},
 })
