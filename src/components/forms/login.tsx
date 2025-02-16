@@ -1,32 +1,25 @@
-import React from 'react'
-import { View, Text, TextInput } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, TextInput, ActivityIndicator } from 'react-native'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { Button } from '../button'
 import { UserType } from '@/types'
-import { login } from '@/models/user'
 import { showToast } from '../customToast'
 import Feather from '@expo/vector-icons/Feather'
+import { useAuth } from '@/context/authContext'
 
 export default function LoginForm() {
+	const { login } = useAuth()
+	const [isLoading, setIsLoading] = useState(false)
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<UserType>()
 	const onSubmit: SubmitHandler<UserType> = async data => {
-		console.log(data)
+		setIsLoading(true)
 		await login(data)
-			.then(response => {
-				console.log(response)
-				showToast({ type: 'success', title: 'Sucesso', message: 'Login realizado com sucesso!' })
-			})
-			.catch(error => {
-				// Se for um erro de validação, pega a mensagem específica
-				const errorMessage = error?.error?.message || 'Erro ao realizar o Login'
-
-				showToast({ type: 'error', title: 'Erro', message: errorMessage })
-			})
+		setIsLoading(false)
 	}
 
 	return (
@@ -75,7 +68,13 @@ export default function LoginForm() {
 			)}
 
 			<View style={{ marginTop: 15 }}>
-				<Button icon='log-in' children={'Entrar'} onPress={handleSubmit(onSubmit)} width={'100%'} isFocused={true} />
+				<Button
+					icon={isLoading ? null : 'log-in'}
+					children={isLoading ? <ActivityIndicator color={'#FFFFFF'} size={'small'} /> : 'Entrar'}
+					onPress={handleSubmit(onSubmit)}
+					width={'100%'}
+					isFocused={true}
+				/>
 			</View>
 		</View>
 	)

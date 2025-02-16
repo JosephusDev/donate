@@ -17,22 +17,6 @@ export const create = async (data: UserType) => {
 	}
 }
 
-export const login = async (data: Pick<UserType, 'username' | 'password'>) => {
-	try {
-		const response = await api.post('/user/login', data)
-		if (response.data?.token) {
-			await AsyncStorage.setItem('token', response.data.token)
-		}
-		return response.data
-	} catch (error: any) {
-		if (error.response && error.response.data) {
-			throw error.response.data
-		} else {
-			throw new Error('Erro inesperado, tente novamente.')
-		}
-	}
-}
-
 export const getDonates = async () => {
 	try {
 		const token = (await AsyncStorage.getItem('token')) ?? API_TOKEN
