@@ -81,8 +81,11 @@ export default function Profile() {
 							</View>
 						</View>
 					) : (
-						<View style={[s.avatar, { borderColor: colors.gray[300] }]}>
-							<Feather name='camera' size={30} color={colors.main.light} />
+						<View>
+							<Image style={s.profileImage} source={require('@/assets/images/profile.png')} />
+							<View style={s.containerImageIcon}>
+								<Feather name='camera' size={15} color={'#FFFFFF'} />
+							</View>
 						</View>
 					)}
 				</Pressable>

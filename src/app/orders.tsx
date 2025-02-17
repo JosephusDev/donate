@@ -27,7 +27,7 @@ export default function Orders() {
 			})
 			.catch(error => {
 				// Se for um erro de validação, pega a mensagem específica
-				const errorMessage = error?.error?.message || 'Erro ao realizar o cadastro'
+				const errorMessage = error?.error?.message || 'Erro ao carregar pedidos'
 				// apresenta do Erros
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
 			})

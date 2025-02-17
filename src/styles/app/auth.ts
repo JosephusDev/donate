@@ -37,4 +37,11 @@ export const s = StyleSheet.create({
 		fontSize: 14,
 		fontFamily: fontFamily.bold,
 	},
+	image: {
+		width: 100,
+		height: 100,
+		borderRadius: 100,
+		borderWidth: 2,
+		borderColor: '#F2F4F7',
+	},
 })

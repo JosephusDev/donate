@@ -10,7 +10,7 @@ import Profile from '@/app/profile'
 import Badge from '../badge'
 import { Dimensions, Text, View } from 'react-native'
 import { s } from './styles'
-import { getMessages } from '@/models/chat'
+import { getChats, getMessages } from '@/models/chat'
 import { getUniqueMessages } from '@/utils/functions'
 import { useEffect, useState } from 'react'
 import { showToast } from '../customToast'
@@ -32,8 +32,8 @@ export default function TabNavigation() {
 	const [count_notifications, setCountNotifications] = useState(0)
 	const { data } = useAuth()
 
-	const getChats = async () => {
-		await getMessages(data?.id || 0)
+	const getChatsData = async () => {
+		await getChats(data?.id || 0)
 			.then(response => {
 				const filteredChats = getUniqueMessages(response)
 				setCountMessages(filteredChats.length)
@@ -56,7 +56,7 @@ export default function TabNavigation() {
 	}
 
 	useEffect(() => {
-		getChats()
+		getChatsData()
 		getAllNotifications()
 	}, [])
 

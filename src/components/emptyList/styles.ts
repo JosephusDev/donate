@@ -7,15 +7,19 @@ export const s = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
-		width: '90%',
+		width: '100%',
 		paddingVertical: 30,
 		gap: 10,
-		marginTop: 20,
 	},
 	text: {
 		textAlign: 'center',
-		fontFamily: fontFamily.bold,
-		fontSize: 13,
+		fontFamily: fontFamily.regular,
+		fontSize: 16,
 		marginTop: 5,
+		color: colors.gray[400],
+	},
+	image: {
+		width: 200,
+		height: 200,
 	},
 })

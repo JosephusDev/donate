@@ -11,12 +11,13 @@ import Select from '../Select'
 import api from '@/services/api'
 import { UrgencyType } from '@/mocks'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useAuth } from '@/context/authContext'
 
 const API_TOKEN = process.env.EXPO_PUBLIC_API_TOKEN
 
 export default function OrderForm({ refreshOrders, onClose }: { refreshOrders: () => void; onClose: () => void }) {
 	const [bloodTypes, setBloodTypes] = useState<BloodType[]>([])
-
+	const { data: user } = useAuth()
 	const getBloodTypes = async () => {
 		try {
 			const token = (await AsyncStorage.getItem('token')) ?? API_TOKEN
@@ -46,7 +47,7 @@ export default function OrderForm({ refreshOrders, onClose }: { refreshOrders: (
 	const onSubmit: SubmitHandler<OrderType> = async data => {
 		data.blood_type_id = Number(data.blood_type_id)
 		data.state = stateEnum.pendente
-		data.user_id = 5
+		data.user_id = user?.id ?? 0
 		console.log(data)
 		await createOrder(data)
 			.then(response => {
