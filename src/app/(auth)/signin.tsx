@@ -1,5 +1,5 @@
 import { Link, Redirect } from 'expo-router'
-import { Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import { s } from '@/styles/app/auth'
 import Card from '@/components/card'
 import { LoginForm } from '@/components/forms'
@@ -14,9 +14,9 @@ export default function SignIn() {
 	}
 	return (
 		<View style={s.container}>
-			<Avatar icon='lock' />
+			<Image style={s.image} source={require('@/assets/images/profile.png')} />
 			<View style={{ width: '90%' }}>
-				<Card title='Iniciar Sessão' description='Faça o seu Login para doar ou receber!'>
+				<Card title='Doe Sangue' description='Faça o seu Login para doar ou receber!'>
 					<LoginForm />
 				</Card>
 				<View style={s.footer}>

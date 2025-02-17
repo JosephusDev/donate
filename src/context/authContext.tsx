@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [data, setData] = useState<UserType | null>(null)
 
 	const login = async (data: Pick<UserType, 'username' | 'password'>) => {
+		console.log(data)
 		await api
 			.post('/user/login', data)
 			.then(response => {
@@ -36,7 +37,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			})
 			.catch(error => {
 				//Se for um erro de validação, pega a mensagem específica
-				const errorMessage = error.response.data.error || 'Erro ao realizar o Login'
+				const errorMessage = error.response.data.error.message
+					? error.response.data.error.message
+					: error.response.data.error
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
 			})
 	}

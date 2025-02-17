@@ -17,15 +17,10 @@ export default function Chats() {
 	const { data } = useAuth()
 
 	const getChatsData = async () => {
-		await getChats(data?.id || 0)
-			.then(response => {
-				const filteredChats = getUniqueMessages(response)
-				setChats(filteredChats)
-			})
-			.catch(error => {
-				const errorMessage = error?.error?.message || 'Erro ao carregar conversas.'
-				showToast({ type: 'error', title: 'Erro', message: errorMessage })
-			})
+		await getChats(data?.id || 0).then(response => {
+			const filteredChats = getUniqueMessages(response)
+			setChats(filteredChats)
+		})
 	}
 
 	useEffect(() => {
@@ -46,37 +41,39 @@ export default function Chats() {
 
 	return (
 		<ScrollView style={{ flex: 1 }}>
-			<View style={s.container}>
-				<Header title='Conversas' showButton={false} onSearchChange={setSearch} searchValue={search} />
+			<View>
 				{filteredChats.length === 0 ? (
 					<EmptyList text='Nenhuma conversa encontrada' />
 				) : (
-					<SafeAreaView style={s.flatlist}>
-						{filteredChats.map(item => (
-							<Link
-								key={item.id}
-								href={`/(chat)/chat/${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
-							>
-								<View style={s.item}>
-									<View style={s.image}>
-										<Feather name='message-circle' color={'#FFFFFF'} size={20} />
+					<View style={s.container}>
+						<Header title='Conversas' showButton={false} onSearchChange={setSearch} searchValue={search} />
+						<SafeAreaView style={s.flatlist}>
+							{filteredChats.map(item => (
+								<Link
+									key={item.id}
+									href={`/(chat)/chat/${capitalizeName(item.user_id_from != data?.id ? (item.user1?.fullname ?? '') : (item.user2?.fullname ?? ''))}?otherUserId=${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
+								>
+									<View style={s.item}>
+										<View style={s.image}>
+											<Feather name='message-circle' color={'#FFFFFF'} size={20} />
+										</View>
+										<View style={[{ width: '100%', gap: 0 }]}>
+											<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
+												{capitalizeName(returnOtherUser(item) ?? '')}
+											</Text>
+											<Text
+												ellipsizeMode='tail'
+												numberOfLines={1}
+												style={[s.description, { fontFamily: 'fontFamily.bold', width: '60%' }]}
+											>
+												{item.message}
+											</Text>
+										</View>
 									</View>
-									<View style={[{ width: '100%', gap: 0 }]}>
-										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
-											{capitalizeName(returnOtherUser(item) ?? '')}
-										</Text>
-										<Text
-											ellipsizeMode='tail'
-											numberOfLines={1}
-											style={[s.description, { fontFamily: 'fontFamily.bold', width: '60%' }]}
-										>
-											{item.message}
-										</Text>
-									</View>
-								</View>
-							</Link>
-						))}
-					</SafeAreaView>
+								</Link>
+							))}
+						</SafeAreaView>
+					</View>
 				)}
 			</View>
 		</ScrollView>

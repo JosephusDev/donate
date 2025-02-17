@@ -17,10 +17,10 @@ export const create = async (data: UserType) => {
 	}
 }
 
-export const getDonates = async () => {
+export const getDonates = async (id: number) => {
 	try {
 		const token = (await AsyncStorage.getItem('token')) ?? API_TOKEN
-		const response = await api.get('/donates', {
+		const response = await api.get(`/donates/${id}`, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		return response.data

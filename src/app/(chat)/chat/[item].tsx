@@ -5,26 +5,19 @@ import { useEffect, useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { s } from '@/styles/app/menus'
-import { Button } from '@/components/button'
 import { createMessage, getMessages } from '@/models/chat'
-import { showToast } from '@/components/customToast'
+import { colors } from '@/styles/colors'
 
 export default function Chat() {
-	const { item } = useLocalSearchParams()
+	const { item, otherUserId } = useLocalSearchParams()
 	const { data: User } = useAuth()
-	const otherUserId = parseInt(item.toString())
 	const [message, setMessage] = useState('')
 	const [messages, setMessages] = useState<MessageType[]>([])
 
 	const getChats = async () => {
-		await getMessages(User?.id || 0, otherUserId)
-			.then(response => {
-				setMessages(response)
-			})
-			.catch(error => {
-				const errorMessage = error?.error?.message || 'Erro ao carregar conversas.'
-				showToast({ type: 'error', title: 'Erro', message: errorMessage })
-			})
+		await getMessages(User?.id || 0, Number(otherUserId)).then(response => {
+			setMessages(response)
+		})
 	}
 
 	useEffect(() => {
@@ -35,7 +28,7 @@ export default function Chat() {
 		if (message.trim()) {
 			const messageData: MessageType = {
 				user_id_from: User?.id || 0,
-				user_id_to: otherUserId,
+				user_id_to: Number(otherUserId),
 				message,
 			}
 			await createMessage(messageData)
@@ -59,12 +52,11 @@ export default function Chat() {
 							s.chatView,
 							{
 								alignSelf: msg?.user1?.fullname === User?.fullname ? 'flex-end' : 'flex-start',
-								backgroundColor: msg?.user1?.fullname === User?.fullname ? '#007AFF' : '#ddd',
+								backgroundColor: msg?.user1?.fullname === User?.fullname ? colors.secondary.blue : '#fff',
 							},
 						]}
 					>
-						{msg.user1?.fullname !== User?.fullname && <Text style={s.otherUser}>{msg.user2?.fullname}</Text>}
-						<Text style={[s.message, { color: msg?.user1?.fullname === User?.fullname ? '#fff' : '#000' }]}>
+						<Text style={[s.message, { color: msg?.user1?.fullname === User?.fullname ? '#fff' : colors.gray[500] }]}>
 							{msg.message}
 						</Text>
 					</View>
@@ -72,7 +64,13 @@ export default function Chat() {
 			</ScrollView>
 
 			<View style={s.chatFooter}>
-				<TextInput style={s.chatInput} placeholder='Digite sua mensagem...' value={message} onChangeText={setMessage} />
+				<TextInput
+					multiline
+					style={s.chatInput}
+					placeholder='Digite sua mensagem...'
+					value={message}
+					onChangeText={setMessage}
+				/>
 				<TouchableOpacity onPress={sendMessage} style={s.chatButton}>
 					<Feather name='send' size={24} color='#FFFFFF' />
 				</TouchableOpacity>

@@ -1,3 +1,4 @@
+import CustomHeaderTitle from '@/components/customHeaderTitle'
 import { Stack } from 'expo-router'
 
 export default function ChatLayout() {
@@ -11,10 +12,10 @@ export default function ChatLayout() {
 			/>
 			<Stack.Screen
 				name='chat/[item]'
-				options={{
+				options={({ route }) => ({
 					headerShown: true,
-					title: 'Conversa',
-				}}
+					headerTitle: () => <CustomHeaderTitle name={route.params?.item} />,
+				})}
 			/>
 		</Stack>
 	)
