@@ -69,7 +69,7 @@ export default function Orders() {
 	}, [])
 	return (
 		<View style={s.container}>
-			<Header title='Pedidos' onClick={() => setVisible(true)} onSearchChange={setSearch} searchValue={search} />
+			<Header title='Meus Pedidos' onClick={() => setVisible(true)} onSearchChange={setSearch} searchValue={search} />
 			{filteredOrders.length === 0 ? (
 				<EmptyList text='Nenhum pedido encontrado' />
 			) : (
