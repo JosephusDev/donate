@@ -59,7 +59,7 @@ export default function Home() {
 			{filteredOrders.length === 0 ? (
 				<EmptyList text='Nenhuma publicação encontrada' />
 			) : (
-				<ScrollView style={{ flex: 1, padding: 20 }}>
+				<ScrollView style={{ flex: 1 }}>
 					<View style={s.headerHome}>
 						{imageUri ? (
 							<Image style={[s.avatar, { width: 50, height: 50 }]} src={imageUri} />

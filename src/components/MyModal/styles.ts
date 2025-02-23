@@ -4,13 +4,12 @@ import { colors, fontFamily } from '@/styles/theme'
 export const s = StyleSheet.create({
 	centeredView: {
 		flex: 1,
-		justifyContent: 'center',
+		justifyContent: 'flex-end',
 		alignItems: 'center',
-		backgroundColor: 'rgba(0,0,0,0.9)',
+		backgroundColor: 'rgba(0,0,0,0.4)',
 	},
 	modalView: {
-		width: '90%',
-		margin: 20,
+		width: '100%',
 		backgroundColor: '#F2F2F2',
 		borderRadius: 5,
 		padding: 25,
@@ -27,7 +26,6 @@ export const s = StyleSheet.create({
 		alignContent: 'center',
 	},
 	modalTitle: {
-		textAlign: 'center',
 		color: colors.gray[600],
 		fontFamily: fontFamily.bold,
 		fontSize: 16,

@@ -53,7 +53,7 @@ export default function Notification() {
 												<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
 													{capitalizeName(item.user.fullname ?? '')}
 												</Text>
-												<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
+												<Text ellipsizeMode='tail' numberOfLines={1} style={[s.description, { width: '80%' }]}>
 													<Feather name='message-circle' size={14} /> {item.description}
 												</Text>
 												<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>

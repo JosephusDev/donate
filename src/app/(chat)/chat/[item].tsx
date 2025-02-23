@@ -7,6 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { s } from '@/styles/app/menus'
 import { createMessage, getMessages } from '@/models/chat'
 import { colors } from '@/styles/colors'
+import { SendHorizonal } from 'lucide-react-native'
 
 export default function Chat() {
 	const { item, otherUserId } = useLocalSearchParams()
@@ -72,7 +73,7 @@ export default function Chat() {
 					onChangeText={setMessage}
 				/>
 				<TouchableOpacity onPress={sendMessage} style={s.chatButton}>
-					<Feather name='send' size={24} color='#FFFFFF' />
+					<SendHorizonal size={24} color='#FFFFFF' />
 				</TouchableOpacity>
 			</View>
 		</View>
