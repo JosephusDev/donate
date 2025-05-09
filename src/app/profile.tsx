@@ -47,7 +47,7 @@ export default function Profile() {
 			setImageUri(newPath)
 			await AsyncStorage.setItem('imagem', newPath).then(() => {
 				showToast({
-					title: 'Doe',
+					title: 'Sucesso',
 					message: 'Imagem de perfil definida com sucesso!',
 					type: 'success',
 				})
@@ -115,8 +115,8 @@ export default function Profile() {
 					<Pressable onPress={handleLogout}>
 						<View style={[s.item, { paddingVertical: 10 }]}>
 							<View style={s.rightProfile}>
-								<View style={s.image}>
-									<Feather name='log-out' size={20} color={'#FFFFFF'} />
+								<View style={[s.image, { backgroundColor: '#F2F4F7' }]}>
+									<Feather name='log-out' size={20} color={colors.main.dark} />
 								</View>
 								<Text style={s.titleItemProfile}>Sair da Conta</Text>
 							</View>

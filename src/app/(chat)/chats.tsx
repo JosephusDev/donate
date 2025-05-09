@@ -4,6 +4,7 @@ import Header from '@/components/header'
 import { useAuth } from '@/context/authContext'
 import { getChats } from '@/models/chat'
 import { s } from '@/styles/app/menus'
+import { fontFamily } from '@/styles/font-family'
 import { MessageType } from '@/types'
 import { capitalizeName, formatedName, getUniqueMessages } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
@@ -40,42 +41,40 @@ export default function Chats() {
 		: chats
 
 	return (
-		<ScrollView style={{ flex: 1 }}>
-			<View>
-				{filteredChats.length === 0 ? (
-					<EmptyList text='Nenhuma conversa encontrada' />
-				) : (
-					<View style={s.container}>
-						<Header title='Conversas' showButton={false} onSearchChange={setSearch} searchValue={search} />
-						<SafeAreaView style={s.flatlist}>
-							{filteredChats.map(item => (
-								<Link
-									key={item.id}
-									href={`/(chat)/chat/${capitalizeName(item.user_id_from != data?.id ? (item.user1?.fullname ?? '') : (item.user2?.fullname ?? ''))}?otherUserId=${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
-								>
-									<View style={s.item}>
-										<View style={s.image}>
-											<Feather name='message-circle' color={'#FFFFFF'} size={20} />
-										</View>
-										<View style={[{ width: '100%', gap: 0 }]}>
-											<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
-												{capitalizeName(returnOtherUser(item) ?? '')}
-											</Text>
-											<Text
-												ellipsizeMode='tail'
-												numberOfLines={1}
-												style={[s.description, { fontFamily: 'fontFamily.bold', width: '60%' }]}
-											>
-												{item.message}
-											</Text>
-										</View>
+		<View style={s.container}>
+			{filteredChats.length === 0 ? (
+				<EmptyList text='Nenhuma conversa encontrada' />
+			) : (
+				<ScrollView>
+					<Header title='Conversas' showButton={false} onSearchChange={setSearch} searchValue={search} />
+					<SafeAreaView style={s.flatlist}>
+						{filteredChats.map(item => (
+							<Link
+								key={item.id}
+								href={`/(chat)/chat/${capitalizeName(item.user_id_from != data?.id ? (item.user1?.fullname ?? '') : (item.user2?.fullname ?? ''))}?otherUserId=${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
+							>
+								<View style={s.item}>
+									<View style={s.image}>
+										<Feather name='message-circle' color={'#FFFFFF'} size={18} />
 									</View>
-								</Link>
-							))}
-						</SafeAreaView>
-					</View>
-				)}
-			</View>
-		</ScrollView>
+									<View style={[{ width: '100%', gap: 0 }]}>
+										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
+											{capitalizeName(returnOtherUser(item) ?? '')}
+										</Text>
+										<Text
+											ellipsizeMode='tail'
+											numberOfLines={1}
+											style={[s.description, { fontFamily: fontFamily.bold, width: '80%' }]}
+										>
+											{item.message}
+										</Text>
+									</View>
+								</View>
+							</Link>
+						))}
+					</SafeAreaView>
+				</ScrollView>
+			)}
+		</View>
 	)
 }

@@ -47,13 +47,13 @@ export default function Notification() {
 									<Link href={`/(chat)/chat/${capitalizeName(item.user.fullname)}?otherUserId=${item.user.id}`}>
 										<View style={s.item}>
 											<View style={s.image}>
-												<Bell color={'#FFFFFF'} />
+												<Bell size={20} color={'#FFFFFF'} />
 											</View>
 											<View style={s.notificationBody}>
 												<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
 													{capitalizeName(item.user.fullname ?? '')}
 												</Text>
-												<Text ellipsizeMode='tail' numberOfLines={1} style={[s.description, { width: '80%' }]}>
+												<Text ellipsizeMode='tail' numberOfLines={2} style={[s.description, { width: '80%' }]}>
 													<Feather name='message-circle' size={14} /> {item.description}
 												</Text>
 												<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>

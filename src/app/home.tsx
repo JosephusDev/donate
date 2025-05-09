@@ -3,11 +3,10 @@ import { getOrder } from '@/models/order'
 import { s } from '@/styles/app/menus'
 import { colors } from '@/styles/colors'
 import { OrderType } from '@/types'
-import { capitalizeName } from '@/utils/functions'
+import { capitalizeName, formatDateDistanceToNow } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
 import { useEffect, useState } from 'react'
 import { Image, ScrollView, Text, TextInput, View } from 'react-native'
-import { format } from 'date-fns'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Link } from 'expo-router'
 import { useAuth } from '@/context/authContext'
@@ -59,7 +58,7 @@ export default function Home() {
 			{filteredOrders.length === 0 ? (
 				<EmptyList text='Nenhuma publicação encontrada' />
 			) : (
-				<ScrollView style={{ flex: 1 }}>
+				<ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
 					<View style={s.headerHome}>
 						{imageUri ? (
 							<Image style={[s.avatar, { width: 50, height: 50 }]} src={imageUri} />
@@ -74,7 +73,7 @@ export default function Home() {
 							onChangeText={setSearch}
 							placeholderTextColor={colors.gray[500]}
 							style={s.searchHome}
-							placeholder='O que estás a procurar?'
+							placeholder='O que está a procurar?'
 						/>
 					</View>
 					<View style={{ marginBottom: 30 }}>
@@ -98,7 +97,7 @@ export default function Home() {
 												<Feather name='map-pin' /> {item.donate_location}
 											</Text>
 											<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
-												<Feather name='calendar' /> {format(item.date, 'dd/MM/yyyy')}
+												<Feather name='calendar' /> {formatDateDistanceToNow(item.date)}
 											</Text>
 											<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
 												<Feather name='alert-circle' /> Urgência: {capitalizeName(item.urgency)}

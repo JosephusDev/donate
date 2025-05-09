@@ -8,6 +8,7 @@ export const s = StyleSheet.create({
 		alignItems: 'center',
 		width: '100%',
 		gap: 10,
+		paddingHorizontal: 20,
 	},
 	containerTitle: {
 		width: '100%',

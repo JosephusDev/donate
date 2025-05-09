@@ -73,7 +73,7 @@ export default function Orders() {
 			{filteredOrders.length === 0 ? (
 				<EmptyList text='Nenhum pedido encontrado' />
 			) : (
-				<SafeAreaView style={{ backgroundColor: '#F5F5F5', width: '100%', marginTop: 20 }}>
+				<SafeAreaView style={{ backgroundColor: '#FFFFFF', width: '100%', height: '100%', marginTop: 20 }}>
 					<FlatList
 						data={filteredOrders}
 						renderItem={({ item }) => {
@@ -84,14 +84,11 @@ export default function Orders() {
 										{
 											marginBottom: 10,
 											backgroundColor: '#FFFFFF',
-											borderRadius: 5,
-											borderLeftWidth: 1,
-											borderLeftColor: colors.main.light,
 										},
 									]}
 								>
 									<View style={s.middle}>
-										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
+										<Text ellipsizeMode='tail' numberOfLines={2} style={s.title}>
 											{capitalizeName(item.description)}
 										</Text>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>

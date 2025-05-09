@@ -1,16 +1,21 @@
-import { useFonts, Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold } from '@expo-google-fonts/rubik'
+import {
+	useFonts,
+	Nunito_400Regular,
+	Nunito_500Medium,
+	Nunito_600SemiBold,
+	Nunito_700Bold,
+} from '@expo-google-fonts/nunito'
 import { StatusBar, View } from 'react-native'
 import Toast from 'react-native-toast-message'
-import Index from './index'
 import { AuthProvider } from '@/context/authContext'
 import { Stack } from 'expo-router'
 
 export default function Layout() {
 	const [fontsLoaded] = useFonts({
-		Rubik_400Regular,
-		Rubik_500Medium,
-		Rubik_600SemiBold,
-		Rubik_700Bold,
+		Nunito_400Regular,
+		Nunito_500Medium,
+		Nunito_600SemiBold,
+		Nunito_700Bold,
 	})
 
 	if (!fontsLoaded) return null

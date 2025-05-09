@@ -1,6 +1,5 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { HomeIcon, Users2, HandHelping, MessageCircle, BellIcon, UserCircle, Menu } from 'lucide-react-native'
-import { colors } from '@/styles/colors'
 import Home from '@/app/home'
 import Donates from '@/app/donates'
 import Orders from '@/app/orders'
@@ -10,7 +9,7 @@ import Profile from '@/app/profile'
 import Badge from '../badge'
 import { Dimensions, Text, View } from 'react-native'
 import { s } from './styles'
-import { getChats, getMessages } from '@/models/chat'
+import { getChats } from '@/models/chat'
 import { getUniqueMessages } from '@/utils/functions'
 import { useEffect, useState } from 'react'
 import { showToast } from '../customToast'
@@ -81,14 +80,14 @@ export default function TabNavigation() {
 		const IconComponent = screen.icon
 		return {
 			tabBarIcon: ({ color, focused }: { color: string; focused: boolean }) => (
-				<IconComponent color={focused ? colors.main.base : color} />
+				<IconComponent color={focused ? '#7950F2' : color} />
 			),
 			tabBarShowLabel: false,
 			tabBarItemStyle: { width: Dimensions.get('window').width / screens.length },
-			tabBarIndicatorStyle: { backgroundColor: colors.main.base },
+			tabBarIndicatorStyle: { backgroundColor: '#7950F2' },
 			tabBarPressColor: 'light',
 			tabBarInactiveTintColor: 'black',
-			tabBarBadge: screen.hasBadge ? () => <Badge text={screen.badge} /> : undefined,
+			tabBarBadge: screen.hasBadge && screen.badge ? () => <Badge text={screen.badge} /> : undefined,
 		}
 	}
 
