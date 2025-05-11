@@ -8,7 +8,7 @@ import { Feather } from '@expo/vector-icons'
 import { useEffect, useState } from 'react'
 import { Image, ScrollView, Text, TextInput, View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Link } from 'expo-router'
+import { Link, useNavigation } from 'expo-router'
 import { useAuth } from '@/context/authContext'
 import EmptyList from '@/components/emptyList'
 
@@ -31,7 +31,6 @@ export default function Home() {
 	const getOrders = async () => {
 		await getOrder()
 			.then(response => {
-				console.log(response)
 				setOrders(response)
 			})
 			.catch(error => {
@@ -49,9 +48,15 @@ export default function Home() {
 			)
 		: orders
 
+	const navigation = useNavigation()
+
 	useEffect(() => {
-		getOrders()
-	}, [])
+		const unsubscribe = navigation.addListener('focus', () => {
+			getOrders()
+		})
+
+		return unsubscribe
+	}, [navigation])
 
 	return (
 		<View style={{ flex: 1 }}>

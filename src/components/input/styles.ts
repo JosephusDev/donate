@@ -3,7 +3,7 @@ import { colors, fontFamily } from '@/styles/theme'
 
 export const s = StyleSheet.create({
 	input: {
-		width: '95%',
+		width: '100%',
 		color: colors.gray[600],
 		fontFamily: fontFamily.regular,
 		fontSize: 14,
@@ -16,7 +16,7 @@ export const s = StyleSheet.create({
 		alignItems: 'center',
 		borderWidth: 1,
 		borderColor: colors.gray[400],
-		borderRadius: 40,
+		borderRadius: 5,
 		paddingHorizontal: 10,
 		gap: 10,
 	},

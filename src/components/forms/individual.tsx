@@ -16,13 +16,12 @@ export default function IndividualForm() {
 	} = useForm<UserType>()
 	const onSubmit: SubmitHandler<UserType> = async data => {
 		data.user_type = UserTypeEnum.individual
-		data.state = false
+		data.state = true
 		data.description = null
 		data.phone = null
 		data.address = null
 		data.gender = GenderEnum.male
 		data.blood_type_id = null
-		console.log(data)
 		await create(data)
 			.then(() => {
 				showToast({ type: 'success', title: 'Sucesso', message: 'Cadastro realizado com sucesso!' })

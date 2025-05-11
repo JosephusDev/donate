@@ -7,7 +7,7 @@ import { s } from '@/styles/app/menus'
 import { notificationType } from '@/types'
 import { capitalizeName } from '@/utils/functions'
 import Feather from '@expo/vector-icons/Feather'
-import { Link } from 'expo-router'
+import { Link, useNavigation } from 'expo-router'
 import { Bell } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
 import { FlatList, SafeAreaView, Text, View } from 'react-native'
@@ -29,9 +29,16 @@ export default function Notification() {
 			})
 	}
 
+	const navigation = useNavigation()
+
 	useEffect(() => {
-		getData()
-	}, [])
+		const unsubscribe = navigation.addListener('focus', () => {
+			getData()
+		})
+
+		return unsubscribe
+	}, [navigation])
+
 	return (
 		<View style={s.container}>
 			{notifications?.length === 0 ? (

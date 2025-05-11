@@ -14,7 +14,7 @@ export const s = StyleSheet.create({
 		color: colors.gray[600],
 	},
 	option: {
-		fontSize: 12,
+		fontSize: 14,
 		fontFamily: fontFamily.regular,
 		color: colors.gray[500],
 	},
@@ -24,7 +24,7 @@ export const s = StyleSheet.create({
 		alignSelf: 'stretch',
 		borderWidth: 1,
 		borderRadius: 10,
-		borderColor: colors.gray[300],
+		borderColor: colors.gray[400],
 		height: 45,
 		marginBottom: 15,
 	},

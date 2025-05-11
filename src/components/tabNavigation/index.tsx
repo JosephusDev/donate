@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { HomeIcon, Users2, HandHelping, MessageCircle, BellIcon, UserCircle, Menu } from 'lucide-react-native'
+import { HomeIcon, Users2, HandHelping, MessageCircle, BellIcon, UserCircle } from 'lucide-react-native'
 import Home from '@/app/home'
 import Donates from '@/app/donates'
 import Orders from '@/app/orders'
@@ -7,7 +7,7 @@ import Chat from '@/app/(chat)/chats'
 import Notifications from '@/app/notifications'
 import Profile from '@/app/profile'
 import Badge from '../badge'
-import { Dimensions, Text, View } from 'react-native'
+import { Alert, Dimensions, Pressable, Text, View } from 'react-native'
 import { s } from './styles'
 import { getChats } from '@/models/chat'
 import { getUniqueMessages } from '@/utils/functions'
@@ -15,6 +15,8 @@ import { useEffect, useState } from 'react'
 import { showToast } from '../customToast'
 import { getNotifications } from '@/models/order'
 import { useAuth } from '@/context/authContext'
+import { colors } from '@/styles/colors'
+import { Feather } from '@expo/vector-icons'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -29,7 +31,22 @@ interface ScreenConfig {
 export default function TabNavigation() {
 	const [count_messages, setCountMessages] = useState(0)
 	const [count_notifications, setCountNotifications] = useState(0)
-	const { data } = useAuth()
+	const { data, logout } = useAuth()
+
+	const handleLogout = () => {
+		Alert.alert(
+			'Terminar sessão',
+			'Deseja sair da conta?',
+			[
+				{
+					text: 'Sim',
+					onPress: () => logout(),
+				},
+				{ text: 'Não', onPress: () => {}, style: 'cancel' },
+			],
+			{ cancelable: false },
+		)
+	}
 
 	const getChatsData = async () => {
 		await getChats(data?.id || 0)
@@ -95,7 +112,9 @@ export default function TabNavigation() {
 		<View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
 			<View style={s.header}>
 				<Text style={s.title}>Doe</Text>
-				<Menu size={25} color={'#000000'} />
+				<Pressable onPress={handleLogout}>
+					<Feather name='log-out' size={20} color={'#000000'} />
+				</Pressable>
 			</View>
 			<Tab.Navigator screenOptions={screenOptions}>
 				{screens.map(({ name, component }) => (

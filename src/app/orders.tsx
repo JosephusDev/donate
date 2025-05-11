@@ -10,6 +10,7 @@ import { colors } from '@/styles/colors'
 import { OrderType } from '@/types'
 import { capitalizeName } from '@/utils/functions'
 import Feather from '@expo/vector-icons/Feather'
+import { useNavigation } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Alert, FlatList, Pressable, SafeAreaView, Text, View } from 'react-native'
 
@@ -64,9 +65,16 @@ export default function Orders() {
 		? orders.filter(order => order.blood_type.name.toLowerCase().includes(search.toLowerCase()))
 		: orders
 
+	const navigation = useNavigation()
+
 	useEffect(() => {
-		getOrders()
-	}, [])
+		const unsubscribe = navigation.addListener('focus', () => {
+			getOrders()
+		})
+
+		return unsubscribe
+	}, [navigation])
+
 	return (
 		<View style={s.container}>
 			<Header title='Meus Pedidos' onClick={() => setVisible(true)} onSearchChange={setSearch} searchValue={search} />
@@ -88,7 +96,7 @@ export default function Orders() {
 									]}
 								>
 									<View style={s.middle}>
-										<Text ellipsizeMode='tail' numberOfLines={2} style={s.title}>
+										<Text ellipsizeMode='tail' numberOfLines={2} style={[s.title, { marginBottom: 10 }]}>
 											{capitalizeName(item.description)}
 										</Text>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>

@@ -7,7 +7,7 @@ interface ISelectProps extends ViewProps {
 	data: ISelect[]
 	onChange?: (text: string) => void
 	onBlur?: () => void
-	value?: number | string
+	value: number | string | null
 }
 
 export default function Select({ data, onChange, onBlur, value, style }: ISelectProps) {
@@ -15,7 +15,7 @@ export default function Select({ data, onChange, onBlur, value, style }: ISelect
 		<View style={[s.picker, style]}>
 			<Picker
 				style={s.input}
-				onValueChange={value => onChange && onChange(value.toString())}
+				onValueChange={value => onChange && onChange(value!.toString())}
 				selectedValue={value}
 				onBlur={onBlur}
 			>

@@ -8,7 +8,7 @@ import { fontFamily } from '@/styles/font-family'
 import { MessageType } from '@/types'
 import { capitalizeName, formatedName, getUniqueMessages } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
-import { Link } from 'expo-router'
+import { Link, useNavigation } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Alert, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native'
 
@@ -24,9 +24,15 @@ export default function Chats() {
 		})
 	}
 
+	const navigation = useNavigation()
+
 	useEffect(() => {
-		getChatsData()
-	}, [])
+		const unsubscribe = navigation.addListener('focus', () => {
+			getChatsData()
+		})
+
+		return unsubscribe
+	}, [navigation])
 
 	const returnOtherUser = (chat: MessageType) => {
 		return chat.user_id_to === data?.id ? chat?.user1?.fullname : chat?.user2?.fullname

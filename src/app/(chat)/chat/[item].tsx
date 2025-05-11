@@ -23,6 +23,9 @@ export default function Chat() {
 
 	useEffect(() => {
 		getChats()
+		const interval = setInterval(() => getChats(), 5000)
+
+		return () => clearInterval(interval)
 	}, [])
 
 	const sendMessage = async () => {
@@ -45,7 +48,11 @@ export default function Chat() {
 
 	return (
 		<View style={s.chatContainer}>
-			<ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 20 }}>
+			<ScrollView
+				style={{ flex: 1 }}
+				contentContainerStyle={{ paddingBottom: 20 }}
+				showsVerticalScrollIndicator={false}
+			>
 				{messages.map(msg => (
 					<View
 						key={msg.id}
