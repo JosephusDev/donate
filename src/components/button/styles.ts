@@ -9,7 +9,7 @@ export const s = StyleSheet.create({
 		backgroundColor: colors.main.light,
 		gap: 10,
 		padding: '4%',
-		borderRadius: 8,
+		borderRadius: 20,
 	},
 	text: {
 		fontFamily: fontFamily.bold,

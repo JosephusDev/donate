@@ -24,7 +24,7 @@ export enum stateEnum {
 
 export type UserType = {
 	id: number
-	email: string
+	email: string | null
 	username: string
 	password: string
 	fullname: string

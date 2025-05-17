@@ -53,18 +53,11 @@ export default function Donates() {
 					<SafeAreaView style={s.flatlist}>
 						<FlatList
 							data={filteredDonetes}
+							ItemSeparatorComponent={() => <View style={s.separator} />}
 							renderItem={({ item }) => {
 								return (
 									<Link href={`/(chat)/chat/${capitalizeName(item.fullname)}?otherUserId=${item.id}`}>
 										<View style={s.item}>
-											{item.image ? (
-												<Image source={item.image} style={s.image} />
-											) : (
-												<View style={s.image}>
-													<Feather name='user' color={'#FFFFFF'} size={20} />
-												</View>
-											)}
-
 											<View
 												style={[
 													s.middle,
@@ -75,13 +68,19 @@ export default function Donates() {
 													<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
 														{capitalizeName(item.fullname)}
 													</Text>
-
-													<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
-														<Merge size={14} color={colors.main.dark} /> {capitalizeText(item.gender)}
-													</Text>
-												</View>
-												<View>
-													<Text style={s.right}>{item.blood_type.name}</Text>
+													<View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+														<Text
+															ellipsizeMode='tail'
+															numberOfLines={1}
+															style={[s.description, { color: colors.main.base }]}
+														>
+															{item.blood_type.name}
+														</Text>
+														<Text style={{ color: colors.gray[500] }}>|</Text>
+														<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
+															{capitalizeText(item.gender)}
+														</Text>
+													</View>
 												</View>
 											</View>
 										</View>

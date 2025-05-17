@@ -4,6 +4,7 @@ import Header from '@/components/header'
 import { useAuth } from '@/context/authContext'
 import { getChats } from '@/models/chat'
 import { s } from '@/styles/app/menus'
+import { colors } from '@/styles/colors'
 import { fontFamily } from '@/styles/font-family'
 import { MessageType } from '@/types'
 import { capitalizeName, formatedName, getUniqueMessages } from '@/utils/functions'
@@ -53,16 +54,13 @@ export default function Chats() {
 			) : (
 				<ScrollView>
 					<Header title='Conversas' showButton={false} onSearchChange={setSearch} searchValue={search} />
-					<SafeAreaView style={s.flatlist}>
+					<SafeAreaView style={{ marginTop: 20 }}>
 						{filteredChats.map(item => (
 							<Link
 								key={item.id}
 								href={`/(chat)/chat/${capitalizeName(item.user_id_from != data?.id ? (item.user1?.fullname ?? '') : (item.user2?.fullname ?? ''))}?otherUserId=${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
 							>
 								<View style={s.item}>
-									<View style={s.image}>
-										<Feather name='message-circle' color={'#FFFFFF'} size={18} />
-									</View>
 									<View style={[{ width: '100%', gap: 0 }]}>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
 											{capitalizeName(returnOtherUser(item) ?? '')}
@@ -70,8 +68,11 @@ export default function Chats() {
 										<Text
 											ellipsizeMode='tail'
 											numberOfLines={1}
-											style={[s.description, { fontFamily: fontFamily.bold, width: '80%' }]}
+											style={[s.description, { fontFamily: fontFamily.regular, width: '90%', marginTop: 5 }]}
 										>
+											<Text style={{ fontFamily: fontFamily.bold }}>
+												{item.user_id_from === data?.id ? 'Eu: ' : `${returnOtherUser(item)?.split(' ')[0]}: `}
+											</Text>
 											{item.message}
 										</Text>
 									</View>

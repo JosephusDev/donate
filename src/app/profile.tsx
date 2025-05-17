@@ -51,10 +51,7 @@ export default function Profile() {
 
 	const getBloodTypes = async () => {
 		try {
-			const token = await AsyncStorage.getItem('token')
-			const response = await api.get<BloodType[]>('/bloodtypes', {
-				headers: { Authorization: `Bearer ${token}` },
-			})
+			const response = await api.get<BloodType[]>('/bloodtypes')
 			const data = response.data
 			data.unshift({
 				id: 0,
@@ -191,7 +188,7 @@ export default function Profile() {
 										style={s.input}
 										onBlur={onBlur}
 										onChangeText={onChange}
-										value={value}
+										value={value!}
 										placeholder='Email'
 									/>
 								)}
@@ -224,12 +221,14 @@ export default function Profile() {
 								control={control}
 								name='gender'
 								render={({ field: { onChange, onBlur, value } }) => (
-									<TextInput
-										style={s.input}
+									<Select
+										value={value}
+										onChange={onChange}
 										onBlur={onBlur}
-										onChangeText={onChange}
-										value={capitalizeText(value)}
-										placeholder='Gênero'
+										data={[
+											{ id: 'masculino', name: 'Masculino' },
+											{ id: 'femenino', name: 'Feminino' },
+										]}
 									/>
 								)}
 							/>
@@ -251,6 +250,7 @@ export default function Profile() {
 										onChangeText={onChange}
 										value={value!}
 										placeholder='Ex: +244 922 333 444'
+										keyboardType='phone-pad'
 									/>
 								)}
 							/>

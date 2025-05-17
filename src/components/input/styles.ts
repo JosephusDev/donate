@@ -16,7 +16,7 @@ export const s = StyleSheet.create({
 		alignItems: 'center',
 		borderWidth: 1,
 		borderColor: colors.gray[400],
-		borderRadius: 5,
+		borderRadius: 10,
 		paddingHorizontal: 10,
 		gap: 10,
 	},

@@ -4,6 +4,7 @@ import Header from '@/components/header'
 import { useAuth } from '@/context/authContext'
 import { getNotifications } from '@/models/order'
 import { s } from '@/styles/app/menus'
+import { colors } from '@/styles/colors'
 import { notificationType } from '@/types'
 import { capitalizeName } from '@/utils/functions'
 import Feather from '@expo/vector-icons/Feather'
@@ -53,21 +54,19 @@ export default function Notification() {
 								return (
 									<Link href={`/(chat)/chat/${capitalizeName(item.user.fullname)}?otherUserId=${item.user.id}`}>
 										<View style={s.item}>
-											<View style={s.image}>
-												<Bell size={20} color={'#FFFFFF'} />
-											</View>
 											<View style={s.notificationBody}>
 												<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
 													{capitalizeName(item.user.fullname ?? '')}
 												</Text>
 												<Text ellipsizeMode='tail' numberOfLines={2} style={[s.description, { width: '80%' }]}>
-													<Feather name='message-circle' size={14} /> {item.description}
+													<Feather name='message-circle' color={colors.main.dark} size={14} /> {item.description}
 												</Text>
 												<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
-													<Feather name='map-pin' size={14} /> {item.donate_location}
+													<Feather name='map-pin' color={colors.main.dark} size={14} /> {item.donate_location}
 												</Text>
 												<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
-													<Feather name='alert-circle' size={14} /> {capitalizeName(item.urgency ?? '')}
+													<Feather name='alert-circle' color={colors.main.dark} size={14} />{' '}
+													{capitalizeName(item.urgency ?? '')}
 												</Text>
 											</View>
 										</View>

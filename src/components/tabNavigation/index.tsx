@@ -97,11 +97,11 @@ export default function TabNavigation() {
 		const IconComponent = screen.icon
 		return {
 			tabBarIcon: ({ color, focused }: { color: string; focused: boolean }) => (
-				<IconComponent color={focused ? '#7950F2' : color} />
+				<IconComponent color={focused ? colors.main.base : color} />
 			),
 			tabBarShowLabel: false,
 			tabBarItemStyle: { width: Dimensions.get('window').width / screens.length },
-			tabBarIndicatorStyle: { backgroundColor: '#7950F2' },
+			tabBarIndicatorStyle: { backgroundColor: colors.main.base },
 			tabBarPressColor: 'light',
 			tabBarInactiveTintColor: 'black',
 			tabBarBadge: screen.hasBadge && screen.badge ? () => <Badge text={screen.badge} /> : undefined,
@@ -113,7 +113,7 @@ export default function TabNavigation() {
 			<View style={s.header}>
 				<Text style={s.title}>Doe</Text>
 				<Pressable onPress={handleLogout}>
-					<Feather name='log-out' size={20} color={'#000000'} />
+					<Feather name='log-out' size={20} color={colors.main.base} />
 				</Pressable>
 			</View>
 			<Tab.Navigator screenOptions={screenOptions}>
