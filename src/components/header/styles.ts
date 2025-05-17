@@ -8,13 +8,19 @@ export const s = StyleSheet.create({
 		alignItems: 'center',
 		width: '100%',
 		gap: 10,
+		paddingHorizontal: 20,
 	},
 	containerTitle: {
-		width: '100%',
+		alignSelf: 'flex-start',
+		backgroundColor: colors.secondary.blue,
+		padding: 10,
+		borderRadius: 10,
 	},
 	title: {
 		fontFamily: fontFamily.bold,
-		fontSize: 20,
+		fontSize: 15,
+		textAlign: 'center',
+		color: colors.secondary.blueDark,
 	},
 	toolBar: {
 		flexDirection: 'row',

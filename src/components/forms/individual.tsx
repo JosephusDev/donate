@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, TextInput } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, TextInput, ActivityIndicator } from 'react-native'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { s } from './styles'
 import { GenderEnum, UserType, UserTypeEnum } from '@/types'
@@ -9,20 +9,21 @@ import { create } from '@/models/user'
 import { showToast } from '../customToast'
 
 export default function IndividualForm() {
+	const [isLoading, setIsLoading] = useState(false)
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<UserType>()
 	const onSubmit: SubmitHandler<UserType> = async data => {
+		setIsLoading(true)
 		data.user_type = UserTypeEnum.individual
-		data.state = false
+		data.state = true
 		data.description = null
-		data.phone = null
+		data.email = null
 		data.address = null
 		data.gender = GenderEnum.male
 		data.blood_type_id = null
-		console.log(data)
 		await create(data)
 			.then(() => {
 				showToast({ type: 'success', title: 'Sucesso', message: 'Cadastro realizado com sucesso!' })
@@ -32,6 +33,9 @@ export default function IndividualForm() {
 				const errorMessage = error?.error?.message || 'Erro ao realizar o cadastro'
 
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
+			})
+			.finally(() => {
+				setIsLoading(false)
 			})
 	}
 
@@ -79,23 +83,23 @@ export default function IndividualForm() {
 				</Text>
 			)}
 
-			<Text style={s.label}>E-mail</Text>
+			<Text style={s.label}>Telefone</Text>
 			<Controller
 				control={control}
-				name='email'
+				name='phone'
 				rules={{ required: true }}
 				render={({ field: { onChange, onBlur, value } }) => (
 					<TextInput
 						style={s.input}
 						onBlur={onBlur}
 						onChangeText={onChange}
-						value={value}
-						placeholder='exemplo@exemplo.com'
-						keyboardType='email-address'
+						value={value!}
+						placeholder='+244 999 999 999'
+						keyboardType='phone-pad'
 					/>
 				)}
 			/>
-			{errors.email && (
+			{errors.phone && (
 				<Text style={s.error}>
 					Campo obrigatório <Feather name={'info'} size={12} />
 				</Text>
@@ -124,8 +128,8 @@ export default function IndividualForm() {
 			)}
 			<View style={{ marginTop: 15 }}>
 				<Button
-					icon='user-plus'
-					children={'Cadastrar'}
+					icon={isLoading ? null : 'log-in'}
+					children={isLoading ? <ActivityIndicator color={'#FFFFFF'} size={'small'} /> : 'Cadastrar'}
 					onPress={handleSubmit(onSubmit)}
 					width={'100%'}
 					isFocused={true}

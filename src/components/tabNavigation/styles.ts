@@ -1,3 +1,4 @@
+import { colors } from '@/styles/colors'
 import { fontFamily } from '@/styles/font-family'
 import { StyleSheet } from 'react-native'
 import { Platform } from 'react-native'

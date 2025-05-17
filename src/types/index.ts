@@ -24,7 +24,7 @@ export enum stateEnum {
 
 export type UserType = {
 	id: number
-	email: string
+	email: string | null
 	username: string
 	password: string
 	fullname: string
@@ -33,12 +33,12 @@ export type UserType = {
 	address: string | null
 	phone: string | null
 	description: string | null
-	blood_type_id: number | null
+	blood_type_id: number | string | null
 	gender: GenderEnum
 }
 
 export type BloodType = {
-	id: number | null
+	id: number
 	name: string
 }
 
@@ -73,7 +73,7 @@ export type OrderType = {
 }
 
 export type ISelect = {
-	id?: number | string | null
+	id: number | string
 	name: string
 }
 

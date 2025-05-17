@@ -10,6 +10,7 @@ import { colors } from '@/styles/colors'
 import { OrderType } from '@/types'
 import { capitalizeName } from '@/utils/functions'
 import Feather from '@expo/vector-icons/Feather'
+import { useNavigation } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Alert, FlatList, Pressable, SafeAreaView, Text, View } from 'react-native'
 
@@ -64,18 +65,26 @@ export default function Orders() {
 		? orders.filter(order => order.blood_type.name.toLowerCase().includes(search.toLowerCase()))
 		: orders
 
+	const navigation = useNavigation()
+
 	useEffect(() => {
-		getOrders()
-	}, [])
+		const unsubscribe = navigation.addListener('focus', () => {
+			getOrders()
+		})
+
+		return unsubscribe
+	}, [navigation])
+
 	return (
 		<View style={s.container}>
 			<Header title='Meus Pedidos' onClick={() => setVisible(true)} onSearchChange={setSearch} searchValue={search} />
 			{filteredOrders.length === 0 ? (
 				<EmptyList text='Nenhum pedido encontrado' />
 			) : (
-				<SafeAreaView style={{ backgroundColor: '#F5F5F5', width: '100%', marginTop: 20 }}>
+				<SafeAreaView style={{ backgroundColor: '#FFFFFF', width: '100%', height: '100%', marginTop: 20 }}>
 					<FlatList
 						data={filteredOrders}
+						style={{ backgroundColor: '#F2F4F7' }}
 						renderItem={({ item }) => {
 							return (
 								<View
@@ -84,29 +93,26 @@ export default function Orders() {
 										{
 											marginBottom: 10,
 											backgroundColor: '#FFFFFF',
-											borderRadius: 5,
-											borderLeftWidth: 1,
-											borderLeftColor: colors.main.light,
 										},
 									]}
 								>
 									<View style={s.middle}>
-										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
+										<Text ellipsizeMode='tail' numberOfLines={2} style={[s.title, { marginBottom: 10, fontSize: 14 }]}>
 											{capitalizeName(item.description)}
 										</Text>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
-											<Feather name='map-pin' /> {item.donate_location}
+											<Feather name='map-pin' color={colors.main.dark} /> {item.donate_location}
 										</Text>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
-											<Feather name='droplet' /> Tipo Sanguíneo: {item.blood_type.name}
+											<Feather name='droplet' color={colors.main.dark} /> Tipo Sanguíneo: {item.blood_type.name}
 										</Text>
 										<Text ellipsizeMode='tail' numberOfLines={1} style={s.description}>
-											<Feather name='alert-circle' /> Urgência: {capitalizeName(item.urgency)}
+											<Feather name='alert-circle' color={colors.main.dark} /> Urgência: {capitalizeName(item.urgency)}
 										</Text>
 									</View>
-									<View style={s.containerButton}>
+									<View style={[s.containerButton, { backgroundColor: colors.secondary.blue, padding: 10 }]}>
 										<Pressable onPress={() => handleDelete(item.id)}>
-											<Feather color={colors.main.dark} size={20} name='trash' />
+											<Feather color={colors.secondary.blueDark} size={20} name='trash' />
 										</Pressable>
 									</View>
 								</View>

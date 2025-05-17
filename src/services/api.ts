@@ -1,4 +1,6 @@
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 const API_URL = process.env.EXPO_PUBLIC_API_URL
 
 const api = axios.create({
@@ -6,6 +8,12 @@ const api = axios.create({
 	headers: {
 		'Content-Type': 'application/json',
 	},
+})
+
+api.interceptors.request.use(async config => {
+	const token = await AsyncStorage.getItem('token')
+	config.headers.Authorization = `Bearer ${token}`
+	return config
 })
 
 export default api

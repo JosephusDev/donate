@@ -8,6 +8,7 @@ type AuthContextType = {
 	data: UserType | null
 	isAuthenticated: boolean
 	login: (data: UserType) => void
+	update: (data: UserType) => void
 	logout: () => void
 }
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -17,7 +18,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [data, setData] = useState<UserType | null>(null)
 
 	const login = async (data: Pick<UserType, 'username' | 'password'>) => {
-		console.log(data)
 		await api
 			.post('/user/login', data)
 			.then(response => {
@@ -25,8 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 				if (result) {
 					AsyncStorage.setItem('token', result?.token)
 					setAuthenticated(true)
-					setData(result?.user)
-					console.log(result)
+					setData({ ...result?.user, password: data.password })
 				} else {
 					showToast({
 						title: 'Doe',
@@ -50,7 +49,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		setData(null)
 	}
 
-	return <AuthContext.Provider value={{ isAuthenticated, login, logout, data }}>{children}</AuthContext.Provider>
+	const update = async (data: UserType) => {
+		await api
+			.put(`/user/update/${data.id}`, data)
+			.then(() => {
+				showToast({
+					title: 'Aviso',
+					message: 'Perfil atualizado com sucesso.',
+					type: 'success',
+				})
+				logout()
+			})
+			.catch(error => {
+				//Se for um erro de validação, pega a mensagem específica
+				const errorMessage = error.response.data.error.message
+					? error.response.data.error.message
+					: error.response.data.error
+				showToast({ type: 'error', title: 'Erro', message: errorMessage })
+			})
+	}
+
+	return (
+		<AuthContext.Provider value={{ isAuthenticated, login, logout, update, data }}>{children}</AuthContext.Provider>
+	)
 }
 
 export const useAuth = () => {

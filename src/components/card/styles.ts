@@ -7,7 +7,7 @@ export const s = StyleSheet.create({
 	},
 	title: {
 		fontFamily: fontFamily.bold,
-		fontSize: 20,
+		fontSize: 24,
 		alignItems: 'center',
 		textAlign: 'center',
 		justifyContent: 'center',
@@ -15,7 +15,7 @@ export const s = StyleSheet.create({
 	},
 	descrition: {
 		fontFamily: fontFamily.regular,
-		fontSize: 12,
+		fontSize: 14,
 		color: colors.gray[500],
 		marginBottom: '8%',
 		textAlign: 'center',

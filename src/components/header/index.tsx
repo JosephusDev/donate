@@ -30,7 +30,7 @@ export default function Header({
 					<Input placeholder='Pesquisar...' onValueChange={onSearchChange} value={searchValue} />
 					{showButton && (
 						<Pressable onPress={onClick}>
-							<Avatar icon='plus' style={{ borderRadius: 10 }} />
+							<Avatar icon='plus' style={{ borderRadius: 40 }} />
 						</Pressable>
 					)}
 				</View>

@@ -3,7 +3,7 @@ import { colors, fontFamily } from '@/styles/theme'
 
 export const s = StyleSheet.create({
 	input: {
-		width: '95%',
+		width: '100%',
 		color: colors.gray[600],
 		fontFamily: fontFamily.regular,
 		fontSize: 14,

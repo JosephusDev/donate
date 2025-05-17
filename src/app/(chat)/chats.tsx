@@ -4,10 +4,12 @@ import Header from '@/components/header'
 import { useAuth } from '@/context/authContext'
 import { getChats } from '@/models/chat'
 import { s } from '@/styles/app/menus'
+import { colors } from '@/styles/colors'
+import { fontFamily } from '@/styles/font-family'
 import { MessageType } from '@/types'
 import { capitalizeName, formatedName, getUniqueMessages } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
-import { Link } from 'expo-router'
+import { Link, useNavigation } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Alert, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native'
 
@@ -23,9 +25,15 @@ export default function Chats() {
 		})
 	}
 
+	const navigation = useNavigation()
+
 	useEffect(() => {
-		getChatsData()
-	}, [])
+		const unsubscribe = navigation.addListener('focus', () => {
+			getChatsData()
+		})
+
+		return unsubscribe
+	}, [navigation])
 
 	const returnOtherUser = (chat: MessageType) => {
 		return chat.user_id_to === data?.id ? chat?.user1?.fullname : chat?.user2?.fullname
@@ -40,42 +48,40 @@ export default function Chats() {
 		: chats
 
 	return (
-		<ScrollView style={{ flex: 1 }}>
-			<View>
-				{filteredChats.length === 0 ? (
-					<EmptyList text='Nenhuma conversa encontrada' />
-				) : (
-					<View style={s.container}>
-						<Header title='Conversas' showButton={false} onSearchChange={setSearch} searchValue={search} />
-						<SafeAreaView style={s.flatlist}>
-							{filteredChats.map(item => (
-								<Link
-									key={item.id}
-									href={`/(chat)/chat/${capitalizeName(item.user_id_from != data?.id ? (item.user1?.fullname ?? '') : (item.user2?.fullname ?? ''))}?otherUserId=${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
-								>
-									<View style={s.item}>
-										<View style={s.image}>
-											<Feather name='message-circle' color={'#FFFFFF'} size={20} />
-										</View>
-										<View style={[{ width: '100%', gap: 0 }]}>
-											<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
-												{capitalizeName(returnOtherUser(item) ?? '')}
+		<View style={s.container}>
+			{filteredChats.length === 0 ? (
+				<EmptyList text='Nenhuma conversa encontrada' />
+			) : (
+				<ScrollView>
+					<Header title='Conversas' showButton={false} onSearchChange={setSearch} searchValue={search} />
+					<SafeAreaView style={{ marginTop: 20 }}>
+						{filteredChats.map(item => (
+							<Link
+								key={item.id}
+								href={`/(chat)/chat/${capitalizeName(item.user_id_from != data?.id ? (item.user1?.fullname ?? '') : (item.user2?.fullname ?? ''))}?otherUserId=${item.user_id_from != data?.id ? item.user_id_from : item.user_id_to}`}
+							>
+								<View style={s.item}>
+									<View style={[{ width: '100%', gap: 0 }]}>
+										<Text ellipsizeMode='tail' numberOfLines={1} style={s.title}>
+											{capitalizeName(returnOtherUser(item) ?? '')}
+										</Text>
+										<Text
+											ellipsizeMode='tail'
+											numberOfLines={1}
+											style={[s.description, { fontFamily: fontFamily.regular, width: '90%', marginTop: 5 }]}
+										>
+											<Text style={{ fontFamily: fontFamily.bold }}>
+												{item.user_id_from === data?.id ? 'Eu: ' : `${returnOtherUser(item)?.split(' ')[0]}: `}
 											</Text>
-											<Text
-												ellipsizeMode='tail'
-												numberOfLines={1}
-												style={[s.description, { fontFamily: 'fontFamily.bold', width: '60%' }]}
-											>
-												{item.message}
-											</Text>
-										</View>
+											{item.message}
+										</Text>
 									</View>
-								</Link>
-							))}
-						</SafeAreaView>
-					</View>
-				)}
-			</View>
-		</ScrollView>
+								</View>
+							</Link>
+						))}
+					</SafeAreaView>
+				</ScrollView>
+			)}
+		</View>
 	)
 }

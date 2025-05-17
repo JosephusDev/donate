@@ -13,7 +13,8 @@ export const colors = {
 		dark: '#F94144',
 	},
 	secondary: {
-		blue: '#1E90FF',
+		blue: '#dbeafe',
+		blueDark: '#2563eb',
 		yellow: '#E9C46A',
 	},
 }
