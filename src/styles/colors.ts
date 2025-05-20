@@ -11,6 +11,7 @@ export const colors = {
 		base: '#F94144',
 		light: '#F94144',
 		dark: '#F94144',
+		transparent: '#fee2e2',
 	},
 	secondary: {
 		blue: '#dbeafe',

@@ -11,29 +11,41 @@ import { capitalizeName, formatedName, getUniqueMessages } from '@/utils/functio
 import { Feather } from '@expo/vector-icons'
 import { Link, useNavigation } from 'expo-router'
 import { useEffect, useState } from 'react'
-import { Alert, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native'
+import { Alert, Pressable, SafeAreaView, ScrollView, Text, View, ActivityIndicator } from 'react-native'
 
 export default function Chats() {
 	const [chats, setChats] = useState<MessageType[]>([])
 	const [search, setSearch] = useState('')
-	const { data } = useAuth()
+	const [isLoading, setIsLoading] = useState(true)
+	const { data, isAuthenticated } = useAuth()
 
 	const getChatsData = async () => {
-		await getChats(data?.id || 0).then(response => {
-			const filteredChats = getUniqueMessages(response)
-			setChats(filteredChats)
-		})
+		setIsLoading(true)
+		await getChats(data?.id || 0)
+			.then(response => {
+				const filteredChats = getUniqueMessages(response)
+				setChats(filteredChats)
+			})
+			.catch(error => {
+				const errorMessage = error?.error?.message || 'Erro ao carregar conversas.'
+				showToast({ type: 'error', title: 'Erro', message: errorMessage })
+			})
+			.finally(() => {
+				setIsLoading(false)
+			})
 	}
 
 	const navigation = useNavigation()
 
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('focus', () => {
-			getChatsData()
+			if (isAuthenticated) {
+				getChatsData()
+			}
 		})
 
 		return unsubscribe
-	}, [navigation])
+	}, [navigation, isAuthenticated])
 
 	const returnOtherUser = (chat: MessageType) => {
 		return chat.user_id_to === data?.id ? chat?.user1?.fullname : chat?.user2?.fullname
@@ -46,6 +58,18 @@ export default function Chats() {
 					v.message.toLowerCase().includes(search.toLowerCase()),
 			)
 		: chats
+
+	if (!isAuthenticated) {
+		return <EmptyList text='Faça login para ver suas conversas' />
+	}
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color={colors.main.base} />
+			</View>
+		)
+	}
 
 	return (
 		<View style={s.container}>

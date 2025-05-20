@@ -4,10 +4,10 @@ import { Redirect } from 'expo-router'
 
 export default function Index() {
 	const { isAuthenticated } = useAuth()
-	console.log('index: ', isAuthenticated)
-	if (!isAuthenticated) {
-		return <Redirect href='/(auth)/signin' />
+
+	if (isAuthenticated) {
+		return <TabNavigation />
 	}
 
-	return <TabNavigation />
+	return <TabNavigation showOnlyPublicTabs />
 }

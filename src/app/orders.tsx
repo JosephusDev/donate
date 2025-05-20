@@ -8,20 +8,32 @@ import { deleteOrder, getUserOrders } from '@/models/order'
 import { s } from '@/styles/app/menus'
 import { colors } from '@/styles/colors'
 import { OrderType } from '@/types'
-import { capitalizeName } from '@/utils/functions'
+import { capitalizeName, formatDateDistanceToNow } from '@/utils/functions'
 import Feather from '@expo/vector-icons/Feather'
 import { useNavigation } from 'expo-router'
 import { useEffect, useState } from 'react'
-import { Alert, FlatList, Pressable, SafeAreaView, Text, View } from 'react-native'
+import {
+	Alert,
+	FlatList,
+	Pressable,
+	SafeAreaView,
+	Text,
+	View,
+	TextInput,
+	ScrollView,
+	ActivityIndicator,
+} from 'react-native'
 
 export default function Orders() {
 	const [orders, setOrders] = useState<OrderType[]>([])
 	const [search, setSearch] = useState('')
 	const [visible, setVisible] = useState(false)
 	const { data } = useAuth()
+	const [isLoading, setIsLoading] = useState(true)
 
 	const getOrders = async () => {
 		// vai depender do login
+		setIsLoading(true)
 		await getUserOrders(data?.id || 0)
 			.then(response => {
 				setOrders(response)
@@ -31,6 +43,9 @@ export default function Orders() {
 				const errorMessage = error?.error?.message || 'Erro ao carregar pedidos'
 				// apresenta do Erros
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
+			})
+			.finally(() => {
+				setIsLoading(false)
 			})
 	}
 
@@ -74,6 +89,14 @@ export default function Orders() {
 
 		return unsubscribe
 	}, [navigation])
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color={colors.main.base} />
+			</View>
+		)
+	}
 
 	return (
 		<View style={s.container}>

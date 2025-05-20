@@ -234,7 +234,7 @@ export const s = StyleSheet.create({
 		width: 30,
 		height: 30,
 		borderRadius: 100,
-		backgroundColor: colors.secondary.blue,
+		backgroundColor: colors.main.transparent,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},

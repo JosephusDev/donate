@@ -17,6 +17,7 @@ import { getNotifications } from '@/models/order'
 import { useAuth } from '@/context/authContext'
 import { colors } from '@/styles/colors'
 import { Feather } from '@expo/vector-icons'
+import { Link } from 'expo-router'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -26,12 +27,18 @@ interface ScreenConfig {
 	icon: React.ComponentType<any>
 	hasBadge?: boolean
 	badge?: string | number
+	isPublic?: boolean
+	label?: string
 }
 
-export default function TabNavigation() {
+interface TabNavigationProps {
+	showOnlyPublicTabs?: boolean
+}
+
+export default function TabNavigation({ showOnlyPublicTabs }: TabNavigationProps) {
 	const [count_messages, setCountMessages] = useState(0)
 	const [count_notifications, setCountNotifications] = useState(0)
-	const { data, logout } = useAuth()
+	const { data, logout, isAuthenticated } = useAuth()
 
 	const handleLogout = () => {
 		Alert.alert(
@@ -72,24 +79,42 @@ export default function TabNavigation() {
 	}
 
 	useEffect(() => {
-		getChatsData()
-		getAllNotifications()
-	}, [])
+		if (data?.id) {
+			getChatsData()
+			getAllNotifications()
+		}
+	}, [data?.id])
 
 	const screens: ScreenConfig[] = [
-		{ name: 'Home', component: Home, icon: HomeIcon },
-		{ name: 'Donates', component: Donates, icon: Users2 },
-		{ name: 'Orders', component: Orders, icon: HandHelping },
-		{ name: 'Chat', component: Chat, icon: MessageCircle, hasBadge: true, badge: count_messages },
+		{ name: 'Home', component: Home, icon: HomeIcon, isPublic: true, label: !isAuthenticated ? 'Início' : undefined },
+		{
+			name: 'Donates',
+			component: Donates,
+			icon: Users2,
+			isPublic: true,
+			label: !isAuthenticated ? 'Doadores' : undefined,
+		},
+		{ name: 'Orders', component: Orders, icon: HandHelping, label: !isAuthenticated ? 'Pedidos' : undefined },
+		{
+			name: 'Chat',
+			component: Chat,
+			icon: MessageCircle,
+			hasBadge: true,
+			badge: count_messages,
+			label: !isAuthenticated ? 'Mensagens' : undefined,
+		},
 		{
 			name: 'Notifications',
 			component: Notifications,
 			icon: BellIcon,
 			hasBadge: true,
 			badge: count_notifications > 9 ? '+9' : count_notifications,
+			label: !isAuthenticated ? 'Notificações' : undefined,
 		},
-		{ name: 'Profile', component: Profile, icon: UserCircle },
+		{ name: 'Profile', component: Profile, icon: UserCircle, label: !isAuthenticated ? 'Perfil' : undefined },
 	]
+
+	const filteredScreens = showOnlyPublicTabs ? screens.filter(screen => screen.isPublic) : screens
 
 	const screenOptions = ({ route }: { route: { name: string } }) => {
 		const screen = screens.find(screen => screen.name === route.name)
@@ -99,8 +124,19 @@ export default function TabNavigation() {
 			tabBarIcon: ({ color, focused }: { color: string; focused: boolean }) => (
 				<IconComponent color={focused ? colors.main.base : color} />
 			),
-			tabBarShowLabel: false,
-			tabBarItemStyle: { width: Dimensions.get('window').width / screens.length },
+			tabBarShowLabel: !isAuthenticated,
+			tabBarLabel: ({ focused }: { focused: boolean }) => (
+				<Text
+					style={{
+						color: focused ? colors.main.base : colors.gray[500],
+						fontSize: 12,
+						fontFamily: 'Nunito_600SemiBold',
+					}}
+				>
+					{screen.label}
+				</Text>
+			),
+			tabBarItemStyle: { width: Dimensions.get('window').width / filteredScreens.length },
 			tabBarIndicatorStyle: { backgroundColor: colors.main.base },
 			tabBarPressColor: 'light',
 			tabBarInactiveTintColor: 'black',
@@ -112,12 +148,20 @@ export default function TabNavigation() {
 		<View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
 			<View style={s.header}>
 				<Text style={s.title}>Doe</Text>
-				<Pressable onPress={handleLogout}>
-					<Feather name='log-out' size={20} color={colors.main.base} />
-				</Pressable>
+				{showOnlyPublicTabs ? (
+					<Link href='/(auth)/signin' asChild>
+						<Pressable>
+							<Feather name='log-in' size={20} />
+						</Pressable>
+					</Link>
+				) : (
+					<Pressable onPress={handleLogout}>
+						<Feather name='log-out' size={20} color={colors.main.base} />
+					</Pressable>
+				)}
 			</View>
 			<Tab.Navigator screenOptions={screenOptions}>
-				{screens.map(({ name, component }) => (
+				{filteredScreens.map(({ name, component }) => (
 					<Tab.Screen key={name} name={name} component={component} />
 				))}
 			</Tab.Navigator>

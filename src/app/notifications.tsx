@@ -9,24 +9,26 @@ import { notificationType } from '@/types'
 import { capitalizeName } from '@/utils/functions'
 import Feather from '@expo/vector-icons/Feather'
 import { Link, useNavigation } from 'expo-router'
-import { Bell } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
-import { FlatList, SafeAreaView, Text, View } from 'react-native'
+import { FlatList, SafeAreaView, Text, View, ActivityIndicator } from 'react-native'
 
 export default function Notification() {
-	const [notifications, setNotifications] = useState<notificationType[]>()
+	const [notifications, setNotifications] = useState<notificationType[]>([])
+	const [isLoading, setIsLoading] = useState(true)
 	const { data } = useAuth()
-	const getData = async () => {
-		// vai depender do login
+
+	const getNotificationsData = async () => {
+		setIsLoading(true)
 		await getNotifications(data?.id || 0)
 			.then(response => {
 				setNotifications(response)
 			})
 			.catch(error => {
-				// Se for um erro de validação, pega a mensagem específica
-				const errorMessage = error?.error?.message || 'Erro ao carregar notificações'
-				// apresenta do Erros
+				const errorMessage = error?.error?.message || 'Erro ao carregar notificações.'
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
+			})
+			.finally(() => {
+				setIsLoading(false)
 			})
 	}
 
@@ -34,19 +36,27 @@ export default function Notification() {
 
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('focus', () => {
-			getData()
+			getNotificationsData()
 		})
 
 		return unsubscribe
 	}, [navigation])
 
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color={colors.main.base} />
+			</View>
+		)
+	}
+
 	return (
 		<View style={s.container}>
-			{notifications?.length === 0 ? (
+			{notifications.length === 0 ? (
 				<EmptyList text='Nenhuma notificação encontrada' />
 			) : (
 				<View>
-					<Header title='Notificações' showInput={false} showButton={false} />
+					<Header title='Notificações' showInput={true} showButton={false} />
 					<SafeAreaView style={s.flatlist}>
 						<FlatList
 							data={notifications}

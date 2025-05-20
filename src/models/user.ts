@@ -15,9 +15,9 @@ export const create = async (data: UserType) => {
 	}
 }
 
-export const getDonates = async (id: number) => {
+export const getDonates = async () => {
 	try {
-		const response = await api.get(`/donates/${id}`)
+		const response = await api.get(`/donates`)
 		return response.data
 	} catch (error: any) {
 		if (error.response && error.response.data) {

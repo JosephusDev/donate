@@ -6,17 +6,16 @@ import { OrderType } from '@/types'
 import { capitalizeName, formatDateDistanceToNow } from '@/utils/functions'
 import { Feather } from '@expo/vector-icons'
 import { useEffect, useState } from 'react'
-import { Image, ScrollView, Text, TextInput, View } from 'react-native'
+import { Image, ScrollView, Text, TextInput, View, Pressable, ActivityIndicator } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Link, useNavigation } from 'expo-router'
-import { useAuth } from '@/context/authContext'
 import EmptyList from '@/components/emptyList'
 
 export default function Home() {
 	const [imageUri, setImageUri] = useState('')
 	const [orders, setOrders] = useState<OrderType[]>([])
 	const [search, setSearch] = useState('')
-	const { data } = useAuth()
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
 		const fetchImage = async () => {
@@ -29,6 +28,7 @@ export default function Home() {
 	}, [])
 
 	const getOrders = async () => {
+		setIsLoading(true)
 		await getOrder()
 			.then(response => {
 				setOrders(response)
@@ -38,6 +38,9 @@ export default function Home() {
 				const errorMessage = error?.error?.message || 'Erro ao carregar pedidos.'
 				// apresenta do Erros
 				showToast({ type: 'error', title: 'Erro', message: errorMessage })
+			})
+			.finally(() => {
+				setIsLoading(false)
 			})
 	}
 	const filteredOrders = search
@@ -57,6 +60,14 @@ export default function Home() {
 
 		return unsubscribe
 	}, [navigation])
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color={colors.main.base} />
+			</View>
+		)
+	}
 
 	return (
 		<View style={{ flex: 1 }}>
@@ -94,7 +105,7 @@ export default function Home() {
 										<View style={s.postMessageButton}>
 											<View style={[s.authorAvatar, { width: 35, height: 35 }]}>
 												<Link href={`/(chat)/chat/${capitalizeName(item.user.fullname)}?otherUserId=${item.user_id}`}>
-													<Feather name='message-circle' size={20} color={colors.secondary.blueDark} />
+													<Feather name='message-circle' size={20} color={colors.main.base} />
 												</Link>
 											</View>
 										</View>
