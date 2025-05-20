@@ -9,6 +9,7 @@ export const s = StyleSheet.create({
 		width: '100%',
 		gap: 10,
 		paddingHorizontal: 20,
+		paddingVertical: 20,
 	},
 	containerTitle: {
 		alignSelf: 'flex-start',

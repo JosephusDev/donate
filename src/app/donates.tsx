@@ -1,17 +1,14 @@
 import { showToast } from '@/components/customToast'
 import EmptyList from '@/components/emptyList'
 import Header from '@/components/header'
-import { useAuth } from '@/context/authContext'
 import { getDonates } from '@/models/user'
 import { s } from '@/styles/app/menus'
 import { colors } from '@/styles/colors'
 import { DonateType } from '@/types'
 import { capitalizeName, capitalizeText } from '@/utils/functions'
-import { Feather } from '@expo/vector-icons'
 import { Link, useNavigation } from 'expo-router'
-import { Merge } from 'lucide-react-native'
 import { useEffect, useState } from 'react'
-import { FlatList, Image, SafeAreaView, Text, View, ActivityIndicator } from 'react-native'
+import { FlatList, SafeAreaView, Text, View, ActivityIndicator } from 'react-native'
 
 export default function Donates() {
 	const [donates, setDonates] = useState<DonateType[]>([])
@@ -33,15 +30,9 @@ export default function Donates() {
 			})
 	}
 
-	const navigation = useNavigation()
-
 	useEffect(() => {
-		const unsubscribe = navigation.addListener('focus', () => {
-			getDonatesData()
-		})
-
-		return unsubscribe
-	}, [navigation])
+		getDonatesData()
+	}, [])
 
 	const filteredDonates = search
 		? donates?.filter(v => v.blood_type.name.toLowerCase().includes(search.toLowerCase()))
@@ -57,11 +48,11 @@ export default function Donates() {
 
 	return (
 		<View style={{ flex: 1 }}>
+			<Header title='Doadores' showButton={false} onSearchChange={setSearch} searchValue={search} />
 			{filteredDonates.length === 0 ? (
 				<EmptyList text='Nenhuma doação encontrada' />
 			) : (
 				<View style={s.container}>
-					<Header title='Doadores' showButton={false} onSearchChange={setSearch} searchValue={search} />
 					<SafeAreaView style={s.flatlist}>
 						<FlatList
 							data={filteredDonates}

@@ -80,15 +80,9 @@ export default function Orders() {
 		? orders.filter(order => order.blood_type.name.toLowerCase().includes(search.toLowerCase()))
 		: orders
 
-	const navigation = useNavigation()
-
 	useEffect(() => {
-		const unsubscribe = navigation.addListener('focus', () => {
-			getOrders()
-		})
-
-		return unsubscribe
-	}, [navigation])
+		getOrders()
+	}, [])
 
 	if (isLoading) {
 		return (

@@ -35,17 +35,11 @@ export default function Chats() {
 			})
 	}
 
-	const navigation = useNavigation()
-
 	useEffect(() => {
-		const unsubscribe = navigation.addListener('focus', () => {
-			if (isAuthenticated) {
-				getChatsData()
-			}
-		})
-
-		return unsubscribe
-	}, [navigation, isAuthenticated])
+		if (isAuthenticated) {
+			getChatsData()
+		}
+	}, [isAuthenticated])
 
 	const returnOtherUser = (chat: MessageType) => {
 		return chat.user_id_to === data?.id ? chat?.user1?.fullname : chat?.user2?.fullname

@@ -32,15 +32,9 @@ export default function Notification() {
 			})
 	}
 
-	const navigation = useNavigation()
-
 	useEffect(() => {
-		const unsubscribe = navigation.addListener('focus', () => {
-			getNotificationsData()
-		})
-
-		return unsubscribe
-	}, [navigation])
+		getNotificationsData()
+	}, [])
 
 	if (isLoading) {
 		return (

@@ -156,7 +156,7 @@ export default function TabNavigation({ showOnlyPublicTabs }: TabNavigationProps
 					</Link>
 				) : (
 					<Pressable onPress={handleLogout}>
-						<Feather name='log-out' size={20} color={colors.main.base} />
+						<Feather name='log-out' size={20} />
 					</Pressable>
 				)}
 			</View>
