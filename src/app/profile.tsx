@@ -190,6 +190,8 @@ export default function Profile() {
 										onChangeText={onChange}
 										value={value!}
 										placeholder='Email'
+										autoComplete='off'
+										autoCorrect={false}
 									/>
 								)}
 							/>

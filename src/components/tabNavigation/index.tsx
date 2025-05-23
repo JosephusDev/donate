@@ -147,7 +147,7 @@ export default function TabNavigation({ showOnlyPublicTabs }: TabNavigationProps
 	return (
 		<View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
 			<View style={s.header}>
-				<Text style={s.title}>Doe</Text>
+				<Text style={s.title}>Doe Sangue</Text>
 				{showOnlyPublicTabs ? (
 					<Link href='/(auth)/signin' asChild>
 						<Pressable>

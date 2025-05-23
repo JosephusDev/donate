@@ -69,14 +69,6 @@ export default function Chat() {
 		return <EmptyList text='Faça login para continuar' />
 	}
 
-	if (isLoading) {
-		return (
-			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-				<ActivityIndicator size='large' color={colors.main.base} />
-			</View>
-		)
-	}
-
 	return (
 		<View style={s.chatContainer}>
 			<ScrollView

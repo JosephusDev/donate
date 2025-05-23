@@ -35,11 +35,15 @@ export default function Chats() {
 			})
 	}
 
+	const navigation = useNavigation()
+
 	useEffect(() => {
-		if (isAuthenticated) {
+		const unsubscribe = navigation.addListener('focus', () => {
 			getChatsData()
-		}
-	}, [isAuthenticated])
+		})
+
+		return unsubscribe
+	}, [navigation])
 
 	const returnOtherUser = (chat: MessageType) => {
 		return chat.user_id_to === data?.id ? chat?.user1?.fullname : chat?.user2?.fullname
@@ -55,14 +59,6 @@ export default function Chats() {
 
 	if (!isAuthenticated) {
 		return <EmptyList text='Faça login para ver suas conversas' />
-	}
-
-	if (isLoading) {
-		return (
-			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-				<ActivityIndicator size='large' color={colors.main.base} />
-			</View>
-		)
 	}
 
 	return (

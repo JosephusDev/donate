@@ -1,5 +1,5 @@
 import { Link, Redirect } from 'expo-router'
-import { Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import { s } from '@/styles/app/auth'
 import Card from '@/components/card'
 import { LoginForm } from '@/components/forms'
@@ -17,7 +17,7 @@ export default function SignIn() {
 				style={[
 					s.image,
 					{
-						backgroundColor: colors.secondary.blue,
+						backgroundColor: colors.main.transparent,
 						justifyContent: 'center',
 						alignItems: 'center',
 						width: 80,
@@ -27,7 +27,7 @@ export default function SignIn() {
 					},
 				]}
 			>
-				<Feather name='droplet' size={50} color={colors.secondary.blueDark} />
+				<Image source={require('@/assets/images/logo.png')} style={{ width: 120, height: 120 }} resizeMode='contain' />
 			</View>
 			<View style={{ width: '90%' }}>
 				<Card title='Doe Sangue' description='Faça o seu Login para doar ou receber!'>
