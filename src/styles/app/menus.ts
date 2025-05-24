@@ -18,7 +18,6 @@ export const s = StyleSheet.create({
 	flatlist: {
 		width: '100%',
 		marginHorizontal: 10,
-		marginTop: 20,
 		backgroundColor: '#FFFFFF',
 		borderRadius: 10,
 		shadowColor: '#FFFFFF',

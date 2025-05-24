@@ -7,7 +7,7 @@ const statusBarHeight = Platform.OS === 'android' ? 0 : 24
 
 export const s = StyleSheet.create({
 	header: {
-		height: 70, // Defina uma altura explícita
+		height: 60, // Defina uma altura explícita
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',

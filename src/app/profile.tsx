@@ -110,212 +110,210 @@ export default function Profile() {
 	}
 
 	return (
-		<View style={s.container}>
-			<ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%' }}>
-				<View style={s.containerProfile}>
-					<Pressable onPress={imageUpload}>
-						{imageUri ? (
-							<View>
-								<Image style={s.profileImage} src={imageUri} />
-								<View style={s.containerImageIcon}>
-									<Feather name='camera' size={15} color={'#FFFFFF'} />
-								</View>
+		<ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%', paddingVertical: 10 }}>
+			<View style={s.containerProfile}>
+				<Pressable onPress={imageUpload}>
+					{imageUri ? (
+						<View>
+							<Image style={s.profileImage} src={imageUri} />
+							<View style={s.containerImageIcon}>
+								<Feather name='camera' size={15} color={'#FFFFFF'} />
 							</View>
-						) : (
-							<View>
-								<Image style={s.profileImage} source={require('@/assets/images/profile.png')} />
-								<View style={s.containerImageIcon}>
-									<Feather name='camera' size={15} color={'#FFFFFF'} />
-								</View>
+						</View>
+					) : (
+						<View>
+							<Image style={s.profileImage} source={require('@/assets/images/profile.png')} />
+							<View style={s.containerImageIcon}>
+								<Feather name='camera' size={15} color={'#FFFFFF'} />
 							</View>
+						</View>
+					)}
+				</Pressable>
+				<Text style={s.username}>{user?.fullname}</Text>
+				<Text style={s.email}>{user?.email}</Text>
+				<View style={s.containerItemProfile}>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Nome Completo</Text>
+						<Controller
+							control={control}
+							name='fullname'
+							rules={{ required: true }}
+							render={({ field: { onChange, onBlur, value } }) => (
+								<TextInput
+									style={s.input}
+									onBlur={onBlur}
+									onChangeText={onChange}
+									value={capitalizeName(value)}
+									placeholder='Nome Completo'
+								/>
+							)}
+						/>
+						{errors.fullname && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
 						)}
-					</Pressable>
-					<Text style={s.username}>{user?.fullname}</Text>
-					<Text style={s.email}>{user?.email}</Text>
-					<View style={s.containerItemProfile}>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Nome Completo</Text>
-							<Controller
-								control={control}
-								name='fullname'
-								rules={{ required: true }}
-								render={({ field: { onChange, onBlur, value } }) => (
-									<TextInput
-										style={s.input}
-										onBlur={onBlur}
-										onChangeText={onChange}
-										value={capitalizeName(value)}
-										placeholder='Nome Completo'
-									/>
-								)}
-							/>
-							{errors.fullname && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
+					</View>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Nome de usuário</Text>
+						<Controller
+							control={control}
+							name='username'
+							rules={{ required: true }}
+							render={({ field: { onChange, onBlur, value } }) => (
+								<TextInput
+									style={s.input}
+									onBlur={onBlur}
+									onChangeText={onChange}
+									value={capitalizeName(value)}
+									placeholder='Nome de usuário'
+								/>
 							)}
-						</View>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Nome de usuário</Text>
-							<Controller
-								control={control}
-								name='username'
-								rules={{ required: true }}
-								render={({ field: { onChange, onBlur, value } }) => (
-									<TextInput
-										style={s.input}
-										onBlur={onBlur}
-										onChangeText={onChange}
-										value={capitalizeName(value)}
-										placeholder='Nome de usuário'
-									/>
-								)}
-							/>
-							{errors.username && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
+						/>
+						{errors.username && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
+						)}
+					</View>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Email</Text>
+						<Controller
+							control={control}
+							name='email'
+							rules={{ required: true }}
+							render={({ field: { onChange, onBlur, value } }) => (
+								<TextInput
+									style={s.input}
+									onBlur={onBlur}
+									onChangeText={onChange}
+									value={value!}
+									placeholder='Email'
+									autoComplete='off'
+									autoCorrect={false}
+								/>
 							)}
-						</View>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Email</Text>
-							<Controller
-								control={control}
-								name='email'
-								rules={{ required: true }}
-								render={({ field: { onChange, onBlur, value } }) => (
-									<TextInput
-										style={s.input}
-										onBlur={onBlur}
-										onChangeText={onChange}
-										value={value!}
-										placeholder='Email'
-										autoComplete='off'
-										autoCorrect={false}
-									/>
-								)}
-							/>
-							{errors.email && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
+						/>
+						{errors.email && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
+						)}
+					</View>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Tipo sanguíneo</Text>
+						<Controller
+							control={control}
+							name='blood_type_id'
+							rules={{ required: true }}
+							render={({ field: { onChange, onBlur, value } }) => (
+								<Select value={value} onChange={onChange} onBlur={onBlur} data={bloodTypes} />
 							)}
-						</View>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Tipo sanguíneo</Text>
-							<Controller
-								control={control}
-								name='blood_type_id'
-								rules={{ required: true }}
-								render={({ field: { onChange, onBlur, value } }) => (
-									<Select value={value} onChange={onChange} onBlur={onBlur} data={bloodTypes} />
-								)}
-							/>
-							{errors.blood_type_id && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
+						/>
+						{errors.blood_type_id && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
+						)}
+					</View>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Gênero</Text>
+						<Controller
+							control={control}
+							name='gender'
+							render={({ field: { onChange, onBlur, value } }) => (
+								<Select
+									value={value}
+									onChange={onChange}
+									onBlur={onBlur}
+									data={[
+										{ id: 'masculino', name: 'Masculino' },
+										{ id: 'femenino', name: 'Feminino' },
+									]}
+								/>
 							)}
-						</View>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Gênero</Text>
-							<Controller
-								control={control}
-								name='gender'
-								render={({ field: { onChange, onBlur, value } }) => (
-									<Select
-										value={value}
-										onChange={onChange}
-										onBlur={onBlur}
-										data={[
-											{ id: 'masculino', name: 'Masculino' },
-											{ id: 'femenino', name: 'Feminino' },
-										]}
-									/>
-								)}
-							/>
-							{errors.gender && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
+						/>
+						{errors.gender && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
+						)}
+					</View>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Telefone</Text>
+						<Controller
+							control={control}
+							name='phone'
+							render={({ field: { onChange, onBlur, value } }) => (
+								<TextInput
+									style={s.input}
+									onBlur={onBlur}
+									onChangeText={onChange}
+									value={value!}
+									placeholder='Ex: +244 922 333 444'
+									keyboardType='phone-pad'
+								/>
 							)}
-						</View>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Telefone</Text>
-							<Controller
-								control={control}
-								name='phone'
-								render={({ field: { onChange, onBlur, value } }) => (
-									<TextInput
-										style={s.input}
-										onBlur={onBlur}
-										onChangeText={onChange}
-										value={value!}
-										placeholder='Ex: +244 922 333 444'
-										keyboardType='phone-pad'
-									/>
-								)}
-							/>
-							{errors.phone && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
+						/>
+						{errors.phone && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
+						)}
+					</View>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Endereço</Text>
+						<Controller
+							control={control}
+							name='address'
+							render={({ field: { onChange, onBlur, value } }) => (
+								<TextInput
+									style={s.input}
+									onBlur={onBlur}
+									onChangeText={onChange}
+									value={value!}
+									placeholder='Ex: Rua das Flores, 123'
+								/>
 							)}
-						</View>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Endereço</Text>
-							<Controller
-								control={control}
-								name='address'
-								render={({ field: { onChange, onBlur, value } }) => (
-									<TextInput
-										style={s.input}
-										onBlur={onBlur}
-										onChangeText={onChange}
-										value={value!}
-										placeholder='Ex: Rua das Flores, 123'
-									/>
-								)}
-							/>
-							{errors.address && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
+						/>
+						{errors.address && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
+						)}
+					</View>
+					<View style={s.itemProfile}>
+						<Text style={s.label}>Palavra-passe</Text>
+						<Controller
+							control={control}
+							name='password'
+							render={({ field: { onChange, onBlur, value } }) => (
+								<TextInput
+									style={s.input}
+									onBlur={onBlur}
+									onChangeText={onChange}
+									placeholder='Palavra-passe'
+									secureTextEntry={true}
+								/>
 							)}
-						</View>
-						<View style={s.itemProfile}>
-							<Text style={s.label}>Palavra-passe</Text>
-							<Controller
-								control={control}
-								name='password'
-								render={({ field: { onChange, onBlur, value } }) => (
-									<TextInput
-										style={s.input}
-										onBlur={onBlur}
-										onChangeText={onChange}
-										placeholder='Palavra-passe'
-										secureTextEntry={true}
-									/>
-								)}
-							/>
-							{errors.password && (
-								<Text style={s.error}>
-									Campo obrigatório <Feather name={'info'} size={12} />
-								</Text>
-							)}
-						</View>
-						<View style={{ marginTop: 15, alignItems: 'center' }}>
-							<Button
-								icon={isLoading ? null : 'save'}
-								children={isLoading ? <ActivityIndicator color={'#FFFFFF'} size={'small'} /> : 'Salvar'}
-								onPress={handleSubmit(onSubmit)}
-								width={'92%'}
-								isFocused={true}
-							/>
-						</View>
+						/>
+						{errors.password && (
+							<Text style={s.error}>
+								Campo obrigatório <Feather name={'info'} size={12} />
+							</Text>
+						)}
+					</View>
+					<View style={{ marginVertical: 20, alignItems: 'center' }}>
+						<Button
+							icon={isLoading ? null : 'save'}
+							children={isLoading ? <ActivityIndicator color={'#FFFFFF'} size={'small'} /> : 'Salvar'}
+							onPress={handleSubmit(onSubmit)}
+							width={'92%'}
+							isFocused={true}
+						/>
 					</View>
 				</View>
-			</ScrollView>
-		</View>
+			</View>
+		</ScrollView>
 	)
 }
