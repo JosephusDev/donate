@@ -22,7 +22,7 @@
 				"backgroundColor": "#ffffff"
 			},
 			"package": "com.josephusdev.Doe",
-			"versionCode": 6
+			"versionCode": 7
 		},
 		"web": {
 			"bundler": "metro",
