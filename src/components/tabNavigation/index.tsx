@@ -1,5 +1,4 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { HomeIcon, Users2, HandHelping, MessageCircle, BellIcon, UserCircle } from 'lucide-react-native'
 import Home from '@/app/home'
 import Donates from '@/app/donates'
 import Orders from '@/app/orders'
@@ -16,7 +15,7 @@ import { showToast } from '../customToast'
 import { getNotifications } from '@/models/order'
 import { useAuth } from '@/context/authContext'
 import { colors } from '@/styles/colors'
-import { Feather } from '@expo/vector-icons'
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 
 const Tab = createMaterialTopTabNavigator()
@@ -86,19 +85,30 @@ export default function TabNavigation({ showOnlyPublicTabs }: TabNavigationProps
 	}, [data?.id])
 
 	const screens: ScreenConfig[] = [
-		{ name: 'Home', component: Home, icon: HomeIcon, isPublic: true, label: !isAuthenticated ? 'Início' : undefined },
+		{
+			name: 'Home',
+			component: Home,
+			icon: props => <Feather name='home' {...props} />,
+			isPublic: true,
+			label: !isAuthenticated ? 'Início' : undefined,
+		},
 		{
 			name: 'Donates',
 			component: Donates,
-			icon: Users2,
+			icon: props => <Feather name='users' {...props} />,
 			isPublic: true,
 			label: !isAuthenticated ? 'Doadores' : undefined,
 		},
-		{ name: 'Orders', component: Orders, icon: HandHelping, label: !isAuthenticated ? 'Pedidos' : undefined },
+		{
+			name: 'Orders',
+			component: Orders,
+			icon: props => <MaterialCommunityIcons name='hand-heart-outline' {...props} />,
+			label: !isAuthenticated ? 'Pedidos' : undefined,
+		},
 		{
 			name: 'Chat',
 			component: Chat,
-			icon: MessageCircle,
+			icon: props => <Feather name='message-circle' {...props} />,
 			hasBadge: true,
 			badge: count_messages,
 			label: !isAuthenticated ? 'Mensagens' : undefined,
@@ -106,12 +116,17 @@ export default function TabNavigation({ showOnlyPublicTabs }: TabNavigationProps
 		{
 			name: 'Notifications',
 			component: Notifications,
-			icon: BellIcon,
+			icon: props => <Feather name='bell' {...props} />,
 			hasBadge: true,
 			badge: count_notifications > 9 ? '+9' : count_notifications,
 			label: !isAuthenticated ? 'Notificações' : undefined,
 		},
-		{ name: 'Profile', component: Profile, icon: UserCircle, label: !isAuthenticated ? 'Perfil' : undefined },
+		{
+			name: 'Profile',
+			component: Profile,
+			icon: props => <Feather name='user' {...props} />,
+			label: !isAuthenticated ? 'Perfil' : undefined,
+		},
 	]
 
 	const filteredScreens = showOnlyPublicTabs ? screens.filter(screen => screen.isPublic) : screens
@@ -122,7 +137,7 @@ export default function TabNavigation({ showOnlyPublicTabs }: TabNavigationProps
 		const IconComponent = screen.icon
 		return {
 			tabBarIcon: ({ color, focused }: { color: string; focused: boolean }) => (
-				<IconComponent color={focused ? colors.main.base : color} />
+				<IconComponent color={focused ? colors.main.base : color} size={24} />
 			),
 			tabBarShowLabel: !isAuthenticated,
 			tabBarLabel: ({ focused }: { focused: boolean }) => (

@@ -6,7 +6,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, ActivityIndicator 
 import { s } from '@/styles/app/menus'
 import { createMessage, getMessages } from '@/models/chat'
 import { colors } from '@/styles/colors'
-import { SendHorizonal } from 'lucide-react-native'
+import Feather from '@expo/vector-icons/Feather'
 import EmptyList from '@/components/emptyList'
 
 export default function Chat() {
@@ -103,7 +103,7 @@ export default function Chat() {
 					onChangeText={setMessage}
 				/>
 				<TouchableOpacity disabled={isSending} onPress={sendMessage} style={s.chatButton}>
-					{isSending ? <ActivityIndicator size='small' color='#FFFFFF' /> : <SendHorizonal size={24} color='#FFFFFF' />}
+					{isSending ? <ActivityIndicator size='small' color='#FFFFFF' /> : <Feather name='send' size={24} color='#FFFFFF' />}
 				</TouchableOpacity>
 			</View>
 		</View>
